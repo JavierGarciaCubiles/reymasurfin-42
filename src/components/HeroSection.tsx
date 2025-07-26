@@ -1,3 +1,4 @@
+
 import { Button } from "@/components/ui/button";
 import { Building2, Home, Hammer } from "lucide-react";
 import ScrollDownIndicator from "./ScrollDownIndicator";
@@ -10,56 +11,110 @@ interface HeroSectionProps {
 
 const HeroSection = ({ onOpenAssistant }: HeroSectionProps) => {
   const [isAudioEnabled, setIsAudioEnabled] = useState(false);
+  const [isAudioReady, setIsAudioReady] = useState(false);
   const audioRef = useRef<HTMLAudioElement>(null);
   const fadeTimeoutRef = useRef<NodeJS.Timeout | null>(null);
 
   useEffect(() => {
     if (!audioRef.current) return;
 
-    const handleScroll = () => {
-      if (isAudioEnabled && !audioRef.current.paused) {
-        audioRef.current.volume = 1; // Mantiene el volumen mientras está habilitado
-      }
+    // Precargar el audio y prepararlo para iOS
+    const audio = audioRef.current;
+    audio.src = "https://www.soundhelix.com/examples/mp3/SoundHelix-Song-13.mp3";
+    audio.preload = "metadata";
+    audio.loop = true;
+    
+    const handleCanPlayThrough = () => {
+      setIsAudioReady(true);
+      console.log("Audio listo para reproducir");
+    };
+    
+    const handleLoadedData = () => {
+      console.log("Audio cargado correctamente");
+    };
+    
+    const handleError = (e: any) => {
+      console.log("Error cargando audio:", e);
     };
 
-    if (isAudioEnabled) {
-      audioRef.current.src = "https://www.soundhelix.com/examples/mp3/SoundHelix-Song-13.mp3";
-      audioRef.current.loop = true;
-      let volume = audioRef.current.volume;
-      if (volume === 0) {
-        audioRef.current.play().catch(error => console.log("Error al reproducir:", error));
-        const fadeIn = setInterval(() => {
-          if (volume < 1) {
-            volume += 0.2;
-            audioRef.current.volume = Math.min(volume, 1);
-          } else {
-            clearInterval(fadeIn);
-          }
-        }, 50);
-      }
-    } else {
-      let volume = audioRef.current.volume;
-      if (volume > 0) {
-        const fadeOut = setInterval(() => {
-          if (volume > 0) {
-            volume -= 0.2;
-            audioRef.current.volume = Math.max(volume, 0);
-          } else {
-            clearInterval(fadeOut);
-            audioRef.current.pause();
-            audioRef.current.currentTime = 0;
-          }
-        }, 50);
-        if (fadeTimeoutRef.current) clearTimeout(fadeTimeoutRef.current);
-      }
+    audio.addEventListener('canplaythrough', handleCanPlayThrough);
+    audio.addEventListener('loadeddata', handleLoadedData);
+    audio.addEventListener('error', handleError);
+    
+    // Forzar la carga inicial
+    audio.load();
+
+    return () => {
+      audio.removeEventListener('canplaythrough', handleCanPlayThrough);
+      audio.removeEventListener('loadeddata', handleLoadedData);
+      audio.removeEventListener('error', handleError);
+    };
+  }, []);
+
+  const toggleAudio = async () => {
+    if (!audioRef.current || !isAudioReady) {
+      console.log("Audio no está listo aún");
+      return;
     }
 
-    window.addEventListener("scroll", handleScroll);
-    return () => window.removeEventListener("scroll", handleScroll);
-  }, [isAudioEnabled]);
-
-  const toggleAudio = () => {
-    setIsAudioEnabled(!isAudioEnabled);
+    const audio = audioRef.current;
+    
+    try {
+      if (!isAudioEnabled) {
+        console.log("Intentando reproducir audio...");
+        
+        // Para iOS Safari, necesitamos asegurar que el audio esté completamente preparado
+        audio.currentTime = 0;
+        audio.volume = 0;
+        
+        // Intentar reproducir primero
+        const playPromise = audio.play();
+        
+        if (playPromise !== undefined) {
+          await playPromise;
+          console.log("Audio iniciado exitosamente");
+          
+          // Fade in suave
+          const fadeIn = setInterval(() => {
+            if (audio.volume < 0.7) {
+              audio.volume = Math.min(audio.volume + 0.1, 0.7);
+            } else {
+              clearInterval(fadeIn);
+            }
+          }, 100);
+          
+          setIsAudioEnabled(true);
+        }
+      } else {
+        console.log("Deteniendo audio...");
+        
+        // Fade out
+        const fadeOut = setInterval(() => {
+          if (audio.volume > 0.1) {
+            audio.volume = Math.max(audio.volume - 0.1, 0);
+          } else {
+            clearInterval(fadeOut);
+            audio.pause();
+            audio.currentTime = 0;
+            setIsAudioEnabled(false);
+          }
+        }, 100);
+      }
+    } catch (error) {
+      console.log("Error al reproducir audio:", error);
+      // En caso de error, intentar una vez más de manera más directa
+      if (!isAudioEnabled) {
+        try {
+          audio.volume = 0.5;
+          await audio.play();
+          setIsAudioEnabled(true);
+          console.log("Audio iniciado en segundo intento");
+        } catch (secondError) {
+          console.log("Error en segundo intento:", secondError);
+          alert("No se puede reproducir audio en este navegador. Esto es común en iOS Safari debido a restricciones del sistema.");
+        }
+      }
+    }
   };
 
   return (
@@ -103,13 +158,25 @@ const HeroSection = ({ onOpenAssistant }: HeroSectionProps) => {
           </Button>
         </div>
 
-        {/* Botones para activar/desactivar audio */}
+        {/* Botón mejorado para activar/desactivar audio con mejor feedback */}
         <div className="flex justify-center mb-8 space-x-4">
           <Button
             onClick={toggleAudio}
-            className="bg-reymasur-corporate-500 text-white hover:bg-reymasur-corporate-600 px-6 py-3 rounded-lg transition-colors duration-300 font-montserrat"
+            disabled={!isAudioReady}
+            className={`px-6 py-3 rounded-lg transition-all duration-300 font-montserrat text-sm ${
+              !isAudioReady 
+                ? "bg-gray-400 text-gray-200 cursor-not-allowed" 
+                : isAudioEnabled
+                ? "bg-red-500 hover:bg-red-600 text-white shadow-lg"
+                : "bg-reymasur-corporate-500 text-white hover:bg-reymasur-corporate-600 shadow-lg"
+            }`}
           >
-            {isAudioEnabled ? "Desactivar Sonido" : "Activar Sonido"}
+            {!isAudioReady 
+              ? "Cargando Audio..." 
+              : isAudioEnabled 
+              ? "🔊 Desactivar Sonido" 
+              : "🔇 Activar Sonido"
+            }
           </Button>
         </div>
 
@@ -139,7 +206,13 @@ const HeroSection = ({ onOpenAssistant }: HeroSectionProps) => {
           </div>
         </div>
       </HeroGeometric>
-      <audio ref={audioRef} loop style={{ display: "none" }} />
+      <audio 
+        ref={audioRef} 
+        loop 
+        style={{ display: "none" }}
+        playsInline
+        webkit-playsinline="true"
+      />
     </section>
   );
 };
