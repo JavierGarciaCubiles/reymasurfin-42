@@ -1,0 +1,306 @@
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* Definition of the design system. All colors, gradients, fonts, etc should be defined here. 
+All colors MUST be HSL.
+*/
+
+@layer base {
+  :root {
+    --background: 0 0% 100%;
+    --foreground: 200 73% 20%;
+
+    --card: 0 0% 100%;
+    --card-foreground: 200 73% 20%;
+
+    --popover: 0 0% 100%;
+    --popover-foreground: 200 73% 20%;
+
+    --primary: 139 64% 40%;
+    --primary-foreground: 0 0% 100%;
+
+    --secondary: 190 30% 85%;
+    --secondary-foreground: 200 73% 20%;
+
+    --muted: 190 30% 85%;
+    --muted-foreground: 200 50% 35%;
+
+    --accent: 53 87% 56%;
+    --accent-foreground: 200 73% 20%;
+
+    --destructive: 354 100% 53%;
+    --destructive-foreground: 0 0% 100%;
+
+    --border: 190 30% 85%;
+    --input: 190 30% 85%;
+    --ring: 139 64% 40%;
+
+    --radius: 0.5rem;
+
+    /* New color palette colors from user's palette */
+    --palette-ghost-white: 234 30% 93%; /* #E8E9F3 - ghost white */
+    --palette-green: 133 64% 39%; /* #23A451 - pigment green */
+    --palette-dark-green: 151 81% 11%; /* #053225 - dark green */
+    --palette-yellow: 51 78% 63%; /* #E9D758 - arylide yellow */
+    --palette-blue: 200 85% 21%; /* #074862 - indigo dye */
+    
+    /* Enhanced career colors for motivation */
+    --career-primary: 139 64% 40%;
+    --career-secondary: 200 73% 20%;
+    --career-accent: 53 87% 56%;
+    --career-success: 139 64% 40%;
+    --career-gradient-start: 139 64% 40%;
+    --career-gradient-end: 200 73% 20%;
+    --career-glow: 139 64% 40%;
+    
+    /* Gradients for dynamic backgrounds */
+    --gradient-career: linear-gradient(135deg, hsl(var(--career-primary)) 0%, hsl(var(--career-secondary)) 100%);
+    --gradient-hero: linear-gradient(135deg, hsl(var(--career-primary)) 0%, hsl(var(--career-accent)) 50%, hsl(var(--career-secondary)) 100%);
+    --gradient-subtle: linear-gradient(145deg, hsl(var(--career-primary) / 0.05) 0%, hsl(var(--career-secondary) / 0.05) 100%);
+
+    --sidebar-background: 0 0% 98%;
+    --sidebar-foreground: 240 5.3% 26.1%;
+    --sidebar-primary: 240 5.9% 10%;
+    --sidebar-primary-foreground: 0 0% 98%;
+    --sidebar-accent: 240 4.8% 95.9%;
+    --sidebar-accent-foreground: 240 5.9% 10%;
+    --sidebar-border: 220 13% 91%;
+    --sidebar-ring: 217.2 91.2% 59.8%;
+  }
+
+  .dark {
+    --background: 222.2 84% 4.9%;
+    --foreground: 210 40% 98%;
+
+    --card: 222.2 84% 4.9%;
+    --card-foreground: 210 40% 98%;
+
+    --popover: 222.2 84% 4.9%;
+    --popover-foreground: 210 40% 98%;
+
+    --primary: 210 40% 98%;
+    --primary-foreground: 222.2 47.4% 11.2%;
+
+    --secondary: 217.2 32.6% 17.5%;
+    --secondary-foreground: 210 40% 98%;
+
+    --muted: 217.2 32.6% 17.5%;
+    --muted-foreground: 215 20.2% 65.1%;
+
+    --accent: 217.2 32.6% 17.5%;
+    --accent-foreground: 210 40% 98%;
+
+    --destructive: 0 62.8% 30.6%;
+    --destructive-foreground: 210 40% 98%;
+
+    --border: 217.2 32.6% 17.5%;
+    --input: 217.2 32.6% 17.5%;
+    --ring: 212.7 26.8% 83.9%;
+    --sidebar-background: 240 5.9% 10%;
+    --sidebar-foreground: 240 4.8% 95.9%;
+    --sidebar-primary: 224.3 76.3% 48%;
+    --sidebar-primary-foreground: 0 0% 100%;
+    --sidebar-accent: 240 3.7% 15.9%;
+    --sidebar-accent-foreground: 240 4.8% 95.9%;
+    --sidebar-border: 240 3.7% 15.9%;
+    --sidebar-ring: 217.2 91.2% 59.8%;
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+
+  body {
+    @apply bg-background text-foreground;
+  }
+}
+
+@layer components {
+  /* Shine animation for the slogan */
+  .animate-shine {
+    position: relative;
+  }
+  
+  .animate-shine::after {
+    content: '';
+    position: absolute;
+    top: -50%;
+    left: -100%;
+    width: 40%;
+    height: 200%;
+    background: linear-gradient(
+      90deg,
+      transparent,
+      rgba(255, 255, 255, 0.5),
+      transparent
+    );
+    transform: skewX(-15deg);
+    animation: shine 3s ease-in-out infinite;
+  }
+  
+  @keyframes shine {
+    0% {
+      left: -100%;
+    }
+    50% {
+      left: 100%;
+    }
+    100% {
+      left: 100%;
+    }
+  }
+
+  /* Animación de borde que se dibuja desde esquinas opuestas */
+  .border-draw-animation {
+    @apply relative overflow-hidden;
+  }
+  
+  .border-draw-animation::before,
+  .border-draw-animation::after {
+    content: '';
+    position: absolute;
+    width: 2px;
+    height: 2px;
+    border: 2px solid hsl(var(--reymasur-green-600));
+    transition: width 0.4s cubic-bezier(0.4, 0, 0.2, 1), 
+                height 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+    pointer-events: none;
+    border-radius: 50%;
+  }
+  
+  .border-draw-animation::before {
+    top: -1px;
+    left: -1px;
+    border-right: none;
+    border-bottom: none;
+  }
+  
+  .border-draw-animation::after {
+    bottom: -1px;
+    right: -1px;
+    border-left: none;
+    border-top: none;
+  }
+  
+  .border-draw-animation:hover::before {
+    width: calc(100% + 2px);
+    height: calc(100% + 2px);
+    border-radius: 0.75rem;
+  }
+  
+  .border-draw-animation:hover::after {
+    width: calc(100% + 2px);
+    height: calc(100% + 2px);
+    border-radius: 0.75rem;
+  }
+
+  /* Versión de la animación de borde para tubelight navbar */
+  .border-draw-animation-tubelight {
+    @apply relative overflow-hidden;
+  }
+  
+  .border-draw-animation-tubelight::before,
+  .border-draw-animation-tubelight::after {
+    content: '';
+    position: absolute;
+    width: 2px;
+    height: 2px;
+    border: 2px solid hsl(var(--reymasur-green-600));
+    transition: width 0.4s cubic-bezier(0.4, 0, 0.2, 1), 
+                height 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+    pointer-events: none;
+    z-index: 10;
+    border-radius: 50%;
+  }
+  
+  .border-draw-animation-tubelight::before {
+    top: -1px;
+    left: -1px;
+    border-right: none;
+    border-bottom: none;
+  }
+  
+  .border-draw-animation-tubelight::after {
+    bottom: -1px;
+    right: -1px;
+    border-left: none;
+    border-top: none;
+  }
+  
+  .border-draw-animation-tubelight:hover::before {
+    width: calc(100% + 2px);
+    height: calc(100% + 2px);
+    border-radius: 9999px;
+  }
+  
+  .border-draw-animation-tubelight:hover::after {
+    width: calc(100% + 2px);
+    height: calc(100% + 2px);
+    border-radius: 9999px;
+  }
+
+  /* Animaciones escalonadas para el Hero Section */
+  .stagger-1 {
+    animation: fade-in 0.8s ease-out 0.2s both;
+  }
+  
+  .stagger-2 {
+    animation: fade-in 0.8s ease-out 0.4s both;
+  }
+  
+  .stagger-3 {
+    animation: fade-in 0.8s ease-out 0.6s both;
+  }
+  
+  .stagger-4 {
+    animation: fade-in 0.8s ease-out 0.8s both;
+  }
+  
+  .stagger-5 {
+    animation: fade-in 0.8s ease-out 1.0s both;
+  }
+  
+  .stagger-6 {
+    animation: fade-in 0.8s ease-out 1.2s both;
+  }
+  
+  .stagger-card-1 {
+    animation: fade-in 0.8s ease-out 1.4s both;
+  }
+  
+  .stagger-card-2 {
+    animation: fade-in 0.8s ease-out 1.6s both;
+  }
+  
+  .stagger-card-3 {
+    animation: fade-in 0.8s ease-out 1.8s both;
+  }
+
+  /* Animación de fade estático para elementos de fondo */
+  .fade-static {
+    animation: fade-static 3s ease-in-out infinite;
+  }
+
+  @keyframes fade-static {
+    0%, 100% {
+      opacity: 0.1;
+    }
+    50% {
+      opacity: 0.3;
+    }
+  }
+
+  /* Animación de gradiente fluido */
+  @keyframes gradient-flow {
+    0%, 100% {
+      background-position: 0% 50%;
+    }
+    50% {
+      background-position: 100% 50%;
+    }
+  }
+}
