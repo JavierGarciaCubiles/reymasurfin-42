@@ -105,12 +105,14 @@ const GremiosSection = () => {
       bgGradient: 'bg-white',
       borderColor: 'border-reymasur-accent-300 hover:border-reymasur-accent-400',
       services: [
-        { name: "Limpieza", type: "image", src: "/lovable-uploads/3f526694-a4a5-47ae-900d-400734fa277b.png" },
-        { name: "Trabajos de alturas", type: "image", src: "/lovable-uploads/3a4d55b5-4e74-431e-b05e-f431d9985106.png" },
-        { name: "Impermeabilizaciones", type: "image", src: "/lovable-uploads/45645f2a-0e99-4be8-ac39-1efeac66a726.png" },
-        { name: "Toldos", type: "image", src: "/lovable-uploads/8fc39640-a1bb-4b8e-9b2d-a8d64e9c0f5c.png" },
-        { name: "Antenas", type: "image", src: "/lovable-uploads/0e67cc71-d96c-4c0d-b7d8-a53ed54b2978.png" },
-        { name: "Rótulos", type: "image", src: "/lovable-uploads/dad44b29-2b2f-4aec-891b-2cd643fff102.png" }
+        { name: "Limpieza profesional", type: "image", src: "/lovable-uploads/3f526694-a4a5-47ae-900d-400734fa277b.png" },
+        { name: "Trabajos en altura", type: "image", src: "/lovable-uploads/3a4d55b5-4e74-431e-b05e-f431d9985106.png" },
+        { name: "Impermeabilización", type: "image", src: "/lovable-uploads/45645f2a-0e99-4be8-ac39-1efeac66a726.png" },
+        { name: "Instalación toldos", type: "image", src: "/lovable-uploads/8fc39640-a1bb-4b8e-9b2d-a8d64e9c0f5c.png" },
+        { name: "Sistemas antena", type: "image", src: "/lovable-uploads/0e67cc71-d96c-4c0d-b7d8-a53ed54b2978.png" },
+        { name: "Rotulación", type: "image", src: "/lovable-uploads/dad44b29-2b2f-4aec-891b-2cd643fff102.png" },
+        { name: "Pozos y saneamiento", type: "icon" },
+        { name: "Rehabilitación fachadas", type: "icon" }
       ]
     }
   ];
