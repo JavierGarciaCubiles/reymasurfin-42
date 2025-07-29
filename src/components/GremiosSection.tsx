@@ -113,7 +113,7 @@ const GremiosSection = () => {
         { name: "Instalación toldos", type: "image", src: "/lovable-uploads/8fc39640-a1bb-4b8e-9b2d-a8d64e9c0f5c.png" },
         { name: "Sistemas antena", type: "image", src: "/lovable-uploads/0e67cc71-d96c-4c0d-b7d8-a53ed54b2978.png" },
         { name: "Rotulación", type: "image", src: "/lovable-uploads/dad44b29-2b2f-4aec-891b-2cd643fff102.png" },
-        { name: "Pozos y saneamiento", type: "image", src: "/lovable-uploads/4bdf0e30-0cf4-4589-a8c2-26db4e210bc6.png" },
+        { name: "Pocería y saneamiento", type: "image", src: "/lovable-uploads/4bdf0e30-0cf4-4589-a8c2-26db4e210bc6.png" },
         { name: "Rehabilitación fachadas", type: "image", src: "/lovable-uploads/83d351f7-8a06-4084-883d-f784b917168d.png" }
       ]
     }
