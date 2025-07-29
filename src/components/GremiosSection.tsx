@@ -79,7 +79,8 @@ const GremiosSection = () => {
         { name: "Albañilería", type: "image", src: "/lovable-uploads/1977f991-fa3b-4906-9651-960f4ef6a2b1.png" },
         { name: "Pintura", type: "image", src: "/lovable-uploads/8b767372-f843-4041-91af-564922a0dc55.png" },
         { name: "Parquet", type: "image", src: "/lovable-uploads/c850e569-a003-46aa-84c1-34adb6cdef72.png" },
-        { name: "Carpintería de madera", type: "image", src: "/lovable-uploads/516691bf-fb9a-4295-9313-ae03f56b1b01.png" }
+        { name: "Carpintería de madera", type: "image", src: "/lovable-uploads/516691bf-fb9a-4295-9313-ae03f56b1b01.png" },
+        { name: "Reformas integrales", type: "icon" }
       ]
     },
     {
@@ -94,7 +95,8 @@ const GremiosSection = () => {
         { name: "Carpintería metálica", type: "image", src: "/lovable-uploads/e773bbe2-dc7f-4e69-ae36-9e004d7680ea.png" },
         { name: "Cerrajería", type: "image", src: "/lovable-uploads/db97f19a-5fc6-4c41-9689-cce3024df255.png" },
         { name: "Videoporteros", type: "image", src: "/lovable-uploads/31b8611a-9349-4119-86ff-4a037e71f66c.png" },
-        { name: "Persianas", type: "image", src: "/lovable-uploads/1b390573-bbba-468d-ac7f-83e5935a1102.png" }
+        { name: "Persianas", type: "image", src: "/lovable-uploads/1b390573-bbba-468d-ac7f-83e5935a1102.png" },
+        { name: "Instalaciones eléctricas industriales", type: "icon" }
       ]
     },
     {
@@ -111,7 +113,7 @@ const GremiosSection = () => {
         { name: "Instalación toldos", type: "image", src: "/lovable-uploads/8fc39640-a1bb-4b8e-9b2d-a8d64e9c0f5c.png" },
         { name: "Sistemas antena", type: "image", src: "/lovable-uploads/0e67cc71-d96c-4c0d-b7d8-a53ed54b2978.png" },
         { name: "Rotulación", type: "image", src: "/lovable-uploads/dad44b29-2b2f-4aec-891b-2cd643fff102.png" },
-        { name: "Pocería y saneamiento", type: "icon" },
+        { name: "Pozos y saneamiento", type: "icon" },
         { name: "Rehabilitación fachadas", type: "icon" }
       ]
     }
