@@ -80,7 +80,7 @@ const GremiosSection = () => {
         { name: "Pintura", type: "image", src: "/lovable-uploads/8b767372-f843-4041-91af-564922a0dc55.png" },
         { name: "Parquet", type: "image", src: "/lovable-uploads/c850e569-a003-46aa-84c1-34adb6cdef72.png" },
         { name: "Carpintería de madera", type: "image", src: "/lovable-uploads/516691bf-fb9a-4295-9313-ae03f56b1b01.png" },
-        { name: "Reformas integrales", type: "icon" }
+        { name: "Reformas integrales", type: "image", src: "/lovable-uploads/b3d33b0a-a5cd-40f5-96ee-ecfb095b0749.png" }
       ]
     },
     {
@@ -96,7 +96,7 @@ const GremiosSection = () => {
         { name: "Cerrajería", type: "image", src: "/lovable-uploads/db97f19a-5fc6-4c41-9689-cce3024df255.png" },
         { name: "Videoporteros", type: "image", src: "/lovable-uploads/31b8611a-9349-4119-86ff-4a037e71f66c.png" },
         { name: "Persianas", type: "image", src: "/lovable-uploads/1b390573-bbba-468d-ac7f-83e5935a1102.png" },
-        { name: "Instalaciones eléctricas industriales", type: "icon" }
+        { name: "Instalaciones eléctricas industriales", type: "image", src: "/lovable-uploads/5f7df607-cc32-4aeb-aa01-9d77a431cdc7.png" }
       ]
     },
     {
@@ -113,8 +113,8 @@ const GremiosSection = () => {
         { name: "Instalación toldos", type: "image", src: "/lovable-uploads/8fc39640-a1bb-4b8e-9b2d-a8d64e9c0f5c.png" },
         { name: "Sistemas antena", type: "image", src: "/lovable-uploads/0e67cc71-d96c-4c0d-b7d8-a53ed54b2978.png" },
         { name: "Rotulación", type: "image", src: "/lovable-uploads/dad44b29-2b2f-4aec-891b-2cd643fff102.png" },
-        { name: "Pozos y saneamiento", type: "icon" },
-        { name: "Rehabilitación fachadas", type: "icon" }
+        { name: "Pozos y saneamiento", type: "image", src: "/lovable-uploads/4bdf0e30-0cf4-4589-a8c2-26db4e210bc6.png" },
+        { name: "Rehabilitación fachadas", type: "image", src: "/lovable-uploads/83d351f7-8a06-4084-883d-f784b917168d.png" }
       ]
     }
   ];
@@ -382,7 +382,6 @@ const GremiosSection = () => {
         isVisible ? animationClasses.visible : animationClasses.hidden
       }`}
     >
-      {/* Background elements */}
       <div className="absolute top-0 left-0 w-full h-full opacity-30">
         <div className="absolute top-16 left-8 w-24 h-24 rounded-full animate-pulse" style={{backgroundColor: 'hsl(var(--reymasur-green-500) / 0.2)', animationDelay: '0s'}}></div>
         <div className="absolute bottom-16 right-8 w-20 h-20 rounded-full animate-bounce" style={{backgroundColor: 'hsl(var(--reymasur-blue-500) / 0.3)', animationDelay: '0.3s'}}></div>
@@ -396,7 +395,6 @@ const GremiosSection = () => {
       </div>
       
       <div className="container mx-auto px-2 md:px-4 relative z-10">
-        {/* Header */}
         <div className="text-center mb-8 md:mb-12">
           <div className="inline-block">
             <h2 className="text-2xl md:text-3xl font-bold text-gray-900 mb-3 md:mb-4 font-montserrat animate-fade-in">
@@ -409,7 +407,6 @@ const GremiosSection = () => {
           </p>
         </div>
 
-        {/* New Guilds Cards */}
         <div className="bg-gradient-to-br from-reymasur-green-50 to-reymasur-blue-50 rounded-2xl md:rounded-3xl shadow-xl p-4 md:p-8 mb-8 md:mb-16">
           <div className="flex flex-col sm:flex-row lg:flex-row gap-2 lg:gap-1 h-auto sm:h-[200px] lg:h-[300px]">
             {guildsData.map((guild, index) => (
@@ -426,7 +423,6 @@ const GremiosSection = () => {
                 onMouseLeave={() => setHoveredCard(null)}
               >
                 <CardContent className="p-3 sm:p-4 lg:p-6 h-full flex flex-col">
-                  {/* Header - Always centered */}
                   <div className="flex-1 flex flex-col justify-center items-center text-center transition-all duration-500 ease-out">
                     <div className={`
                       inline-flex items-center justify-center rounded-full 
@@ -459,7 +455,6 @@ const GremiosSection = () => {
                     </h2>
                   </div>
 
-                  {/* Services Grid */}
                   <div className={`
                     flex-1 transition-all duration-500 ease-out
                     ${hoveredCard === guild.id 
@@ -498,7 +493,6 @@ const GremiosSection = () => {
             ))}
           </div>
 
-          {/* Info footer */}
           <div className="text-center mt-8">
             <p className="text-reymasur-green-600 text-sm font-medium">
               Pasa el cursor sobre las tarjetas para ver los servicios disponibles
@@ -506,7 +500,6 @@ const GremiosSection = () => {
           </div>
         </div>
 
-        {/* Technology Tools Section */}
         <div className="bg-gradient-to-br from-reymasur-blue-50 to-reymasur-green-50 rounded-2xl md:rounded-3xl shadow-xl p-4 md:p-8 mb-8 md:mb-16 relative">
           <motion.div
             className="absolute inset-0 bg-gradient-to-br from-reymasur-blue-50 to-reymasur-green-50 rounded-3xl z-0"
@@ -559,7 +552,6 @@ const GremiosSection = () => {
           </div>
         </div>
 
-        {/* Work Portfolio Section */}
         <div className="bg-white rounded-2xl md:rounded-3xl shadow-xl p-4 md:p-8">
           <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between mb-4 sm:mb-6 gap-3 sm:gap-0">
             <h3 className="text-xl sm:text-2xl font-bold text-gray-900 font-montserrat">
