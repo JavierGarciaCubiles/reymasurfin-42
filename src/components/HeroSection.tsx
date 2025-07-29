@@ -190,13 +190,6 @@ const HeroSection = ({ onOpenAssistant }: HeroSectionProps) => {
             <p className="text-sm text-gray-600 font-montserrat">Solo trabajamos con expertos</p>
           </div>
         </div>
-
-        {/* Crédito discreto al desarrollador */}
-        <div className="flex justify-center mt-16">
-          <p className="text-xs text-gray-400/60 font-montserrat">
-            Desarrollado por Javier García Cubiles
-          </p>
-        </div>
       </HeroGeometric>
       <audio 
         ref={audioRef} 
