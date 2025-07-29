@@ -1,3 +1,4 @@
+
 import { Button } from "@/components/ui/button";
 import { Building2, Home, Hammer } from "lucide-react";
 import ScrollDownIndicator from "./ScrollDownIndicator";
@@ -125,7 +126,7 @@ const HeroSection = ({ onOpenAssistant }: HeroSectionProps) => {
         </div>
 
         {/* CTA Buttons */}
-        <div className="flex flex-col sm:flex-row gap-4 justify-center items-center mb-8">
+        <div className="flex flex-col sm:flex-row gap-4 justify-center items-center mb-6">
           <Button 
             size="lg"
             className="bg-gradient-to-r from-palette-blue to-palette-green text-white font-semibold px-8 py-4 text-lg transition-all duration-300 transform hover:scale-105 shadow-xl hover:shadow-2xl font-montserrat"
@@ -141,6 +142,13 @@ const HeroSection = ({ onOpenAssistant }: HeroSectionProps) => {
           >
             LLAMAR AHORA
           </Button>
+        </div>
+
+        {/* Credit text */}
+        <div className="flex justify-center mb-4">
+          <p className="text-sm text-gray-500 font-montserrat opacity-60">
+            Website made by Javier García Cubiles
+          </p>
         </div>
 
         {/* Botón de audio optimizado para iOS */}
