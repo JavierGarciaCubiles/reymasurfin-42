@@ -489,16 +489,6 @@ const GremiosSection = () => {
                       ))}
                     </div>
                   </div>
-
-                  {/* Service count badge */}
-                  <div className={`
-                    absolute top-3 right-3 transition-all duration-300
-                    ${hoveredCard === guild.id ? 'opacity-0 scale-95' : 'opacity-100 scale-100'}
-                  `}>
-                    <Badge variant="secondary" className="bg-white/90 text-gray-600 text-xs">
-                      {guild.services.length}
-                    </Badge>
-                  </div>
                 </CardContent>
               </Card>
             ))}
