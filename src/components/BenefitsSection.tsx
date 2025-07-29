@@ -68,7 +68,7 @@ const BenefitsSection = () => {
                     <Zap className="w-8 h-8 text-reymasur-accent-200" />
                     <div>
                       <h4 className="text-base font-bold mb-1">Instalaciones Eléctricas</h4>
-                      <p className="text-white/80 text-xs">Trabajos eléctricos con certificación oficial</p>
+                      <p className="text-white/80 text-xs">Certificados por Industria en trabajos eléctricos</p>
                     </div>
                   </div>
                 </div>
