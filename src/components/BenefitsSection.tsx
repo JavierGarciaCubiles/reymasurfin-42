@@ -4,19 +4,19 @@ import { useEffect } from "react";
 const benefits = [{
   iconImage: "/lovable-uploads/20f070b2-160e-4ec2-a517-ff74b9de5171.png",
   title: "Calidad Garantizada",
-  description: "Utilizamos materiales de buena calidad y nos esforzamos por ofrecer acabados adecuados. Tu inversión cuenta con nuestra garantía básica."
+  description: "Utilizamos solo materiales de primera calidad y ofrecemos acabados impecables. Tu inversión está protegida con nuestra garantía total."
 }, {
   iconImage: "/lovable-uploads/86b58732-767c-43ea-80f7-573a34407909.png",
   title: "Cumplimiento Puntual",
-  description: "Nos comprometemos a entregar los proyectos en los plazos establecidos, ajustados de manera realista, y trabajamos para cumplirlos."
+  description: "Entregamos todos los proyectos en tiempo y forma. Nuestros cronogramas son realistas y nos comprometemos a cumplirlos al 100%."
 }, {
   iconImage: "/lovable-uploads/20b5734d-611d-4f6a-81b2-4de0782324a5.png",
   title: "Equipo Profesional",
-  description: "Contamos con albañiles y profesionales con experiencia, respaldados por décadas en el oficio y un enfoque en técnicas efectivas."
+  description: "Albañiles y constructores certificados con más de 10 años de experiencia. Formación continua y técnicas de vanguardia."
 }, {
   iconImage: "/lovable-uploads/26857888-d20a-4fb4-85b1-31dc17cf7ea8.png",
   title: "Seguros y Garantías",
-  description: "Ofrecemos cobertura con seguros de responsabilidad civil y garantizamos los trabajos y materiales dentro de los términos establecidos."
+  description: "Cobertura completa con seguros de responsabilidad civil. Garantía extendida en todos nuestros trabajos y materiales utilizados."
 }];
 const BenefitsSection = () => {
   const {
@@ -68,7 +68,7 @@ const BenefitsSection = () => {
                     <Zap className="w-8 h-8 text-reymasur-accent-200" />
                     <div>
                       <h4 className="text-base font-bold mb-1">Instalaciones Eléctricas</h4>
-                      <p className="text-white/80 text-xs">Trabajos eléctricos con certificación oficial</p>
+                      <p className="text-white/80 text-xs">Certificados por Industria en trabajos eléctricos</p>
                     </div>
                   </div>
                 </div>
