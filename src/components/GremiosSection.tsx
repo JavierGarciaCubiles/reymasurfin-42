@@ -153,7 +153,7 @@ const GremiosSection = () => {
     {
       id: 2,
       name: "Detectores Profesionales",
-      description: "Equipos de ultrasonido, geófonos y detectores especializados para localización de fugas, gas y humedad con tecnología avanzada y precisión garantizada en cada intervención.",
+      description: "Equipos avanzados y precisos diseñados para la localización de fugas, gas y humedad en cada intervención.",
       icon: Shield,
       image: "/lovable-uploads/91cf0d54-a182-406b-9adb-a65818e4e7e7.png",
       additionalImages: [
