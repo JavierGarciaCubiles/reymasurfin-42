@@ -157,20 +157,13 @@ const GremiosSection = () => {
       name: "Detectores Profesionales",
       description: "Equipos de ultrasonido, geófonos y detectores especializados para localización de fugas, gas y humedad con tecnología avanzada y precisión garantizada en cada intervención.",
       icon: Shield,
-      image: "https://images.unsplash.com/photo-1518770660439-4636190af475?auto=format&fit=crop&w=300&h=300",
+      image: "/lovable-uploads/91cf0d54-a182-406b-9adb-a65818e4e7e7.png",
       additionalImages: [
-        "https://images.unsplash.com/photo-1600585154340-be6161a56a0c?auto=format&fit=crop&w=300&h=300",
-        "https://images.unsplash.com/photo-1560523150-6a256c2d8e01?auto=format&fit=crop&w=300&h=300",
-        "https://images.unsplash.com/photo-1501854140801-50d01698950b?auto=format&fit=crop&w=300&h=300",
-        "https://images.unsplash.com/photo-1555099962-4199c345e5dd?auto=format&fit=crop&w=300&h=300",
-        "https://images.unsplash.com/photo-1488590528505-98d2b5aba04b?auto=format&fit=crop&w=300&h=300"
+        "/lovable-uploads/f7b58761-2d25-421a-a8c3-b632847cb778.png"
       ],
       imageDescriptions: [
-        "Equipos de ultrasonido para detección precisa de fugas en cualquier entorno, ofreciendo resultados confiables y rápidos.",
-        "Geófonos avanzados diseñados para localizar problemas subterráneos con gran exactitud y eficiencia.",
-        "Detectores de fugas con tecnología de punta para identificar filtraciones ocultas.",
-        "Detectores de gas que garantizan seguridad en entornos industriales.",
-        "Detectores de humedad para evaluar condiciones estructurales con precisión."
+        "Detector de fuga ultrasonido con tecnología avanzada para localización precisa de filtraciones mediante ondas ultrasónicas, permitiendo identificar fugas inaudibles al oído humano con máxima precisión y eficiencia.",
+        "Detector de fuga gas traza con sistema de análisis molecular que utiliza gases trazadores para identificar las fugas más pequeñas en sistemas presurizados, garantizando una detección absoluta incluso en condiciones complejas."
       ],
       category: "Tecnología",
       status: "Disponible"
