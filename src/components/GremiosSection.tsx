@@ -255,6 +255,8 @@ const GremiosSection = () => {
     const allImages = [card.image, ...card.additionalImages];
     const allDescriptions = card.id === 4 
       ? ["Videocámara de hasta 20 metros", "Videocámara de hasta 50 metros", "Cámara térmica para localizaciones de fuga"]
+      : card.id === 2
+      ? ["Detector de fuga ultrasonido", "Detector de fuga gas traza"]
       : [card.description, ...card.imageDescriptions];
 
     return (
@@ -322,7 +324,19 @@ const GremiosSection = () => {
                           {currentImageIndex === 0 ? "Video Presentación Corporativa" : ""}
                         </h4>
                         <p className="text-gray-600 text-xs sm:text-sm">
+                          {card.imageDescriptions[currentImageIndex]}
+                        </p>
+                      </>
+                    ) : card.id === 2 ? (
+                      <>
+                        <h4 className="font-semibold text-sm sm:text-base mb-2">
                           {allDescriptions[currentImageIndex]}
+                        </h4>
+                        <p className="text-gray-600 text-xs sm:text-sm">
+                          {currentImageIndex === 0 
+                            ? "Equipado con tecnología de vanguardia para localización de fugas mediante ondas ultrasónicas. Este detector profesional permite identificar filtraciones inaudibles al oído humano, ofreciendo una precisión excepcional en el diagnóstico de sistemas de tuberías y estructuras."
+                            : "Tecnología de análisis molecular avanzada que utiliza gases trazadores para la detección de fugas microscópicas. Ideal para sistemas presurizados donde se requiere una detección absoluta, garantizando la identificación de las fugas más pequeñas incluso en condiciones complejas."
+                          }
                         </p>
                       </>
                     ) : card.id === 4 ? (
@@ -341,7 +355,7 @@ const GremiosSection = () => {
                       </>
                     ) : (
                       <p className="text-gray-600 text-xs sm:text-sm">
-                        {allDescriptions[currentImageIndex]}
+                        {card.imageDescriptions[currentImageIndex]}
                       </p>
                     )}
                   </motion.div>
