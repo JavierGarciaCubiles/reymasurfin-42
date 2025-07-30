@@ -1,3 +1,4 @@
+
 import React, { useState, useMemo } from "react";
 import { Card, CardContent } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
@@ -195,16 +196,15 @@ const GremiosSection = () => {
     {
       id: 4,
       name: "Sistemas de Cámaras",
-      description: "Cámaras térmicas para diagnóstico energético y videocámaras para inspección de canalizaciones, optimizando el mantenimiento y la eficiencia.",
+      description: "Videocámaras profesionales para inspección de canalizaciones y diagnóstico de instalaciones, con diferentes alcances según las necesidades del proyecto.",
       icon: Camera,
-      image: "https://images.unsplash.com/photo-1488590528505-98d2b5aba04b?auto=format&fit=crop&w=300&h=300",
+      image: "/lovable-uploads/b86dde82-0f68-449e-a3e3-10b6114c2aa8.png",
       additionalImages: [
-        "https://images.unsplash.com/photo-1517480600486-09e8a013e0d1?auto=format&fit=crop&w=300&h=300",
-        "https://images.unsplash.com/photo-1565019601366-5f4038eb2e8b?auto=format&fit=crop&w=300&h=300"
+        "/lovable-uploads/729dd8e4-c3ba-4ba7-8022-88368e03a331.png"
       ],
       imageDescriptions: [
-        "Diagnóstico energético con cámaras térmicas para identificar pérdidas de calor.",
-        "Inspección de canalizaciones con videocámaras de alta sensibilidad para detección de obstrucciones."
+        "Videocámara profesional de hasta 20 metros con pantalla integrada y sistema de iluminación LED, ideal para inspecciones detalladas de tuberías y canalizaciones de mediano alcance.",
+        "Videocámara avanzada WÖHLER de hasta 50 metros con tecnología de grabación digital y pantalla táctil de alta resolución, perfecta para inspecciones de largo alcance en sistemas complejos de canalización."
       ],
       category: "Tecnología",
       status: "Nuevo"
@@ -259,7 +259,9 @@ const GremiosSection = () => {
     if (!card) return null;
 
     const allImages = [card.image, ...card.additionalImages];
-    const allDescriptions = [card.description, ...card.imageDescriptions];
+    const allDescriptions = card.id === 4 
+      ? ["Videocámara de hasta 20 metros", "Videocámara de hasta 50 metros"]
+      : [card.description, ...card.imageDescriptions];
 
     return (
       <motion.div
@@ -327,6 +329,18 @@ const GremiosSection = () => {
                         </h4>
                         <p className="text-gray-600 text-xs sm:text-sm">
                           {allDescriptions[currentImageIndex]}
+                        </p>
+                      </>
+                    ) : card.id === 4 ? (
+                      <>
+                        <h4 className="font-semibold text-sm sm:text-base mb-2">
+                          {allDescriptions[currentImageIndex]}
+                        </h4>
+                        <p className="text-gray-600 text-xs sm:text-sm">
+                          {currentImageIndex === 0 
+                            ? "Equipada con tecnología de vanguardia para inspecciones detalladas, esta videocámara ofrece una visión clara y precisa en entornos de hasta 20 metros. Perfecta para diagnósticos de tuberías residenciales y comerciales con sistema de iluminación LED integrado."
+                            : "Experimenta la máxima eficiencia en tus proyectos con esta videocámara de largo alcance, diseñada para cubrir distancias de hasta 50 metros con una calidad de imagen excepcional. Ideal para sistemas industriales complejos con grabación digital y análisis avanzado."
+                          }
                         </p>
                       </>
                     ) : (
