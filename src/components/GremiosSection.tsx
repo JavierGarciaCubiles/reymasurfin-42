@@ -25,7 +25,8 @@ import {
   SunSnow,
   Radio,
   Type,
-  Brush
+  Brush,
+  Play
 } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { useImagePreloader } from "@/hooks/useImagePreloader";
@@ -206,6 +207,24 @@ const GremiosSection = () => {
       ],
       category: "Tecnología",
       status: "Premium"
+    },
+    {
+      id: 5,
+      name: "Video Presentación Corporativa",
+      description: "Vídeo de presentación de nuestra empresa, mostrando nuestras instalaciones, equipo profesional y la calidad de nuestros servicios integrales.",
+      icon: Play,
+      image: "https://images.unsplash.com/photo-1611162617474-5b21e879e113?auto=format&fit=crop&w=300&h=300",
+      additionalImages: [
+        "https://images.unsplash.com/photo-1574717024653-61fd2cf4d44d?auto=format&fit=crop&w=300&h=300",
+        "https://images.unsplash.com/photo-1553877522-43269d4ea984?auto=format&fit=crop&w=300&h=300"
+      ],
+      imageDescriptions: [
+        "Video presentación de Reymasur 13 mostrando nuestras capacidades y experiencia.",
+        "Instalaciones modernas equipadas con la última tecnología para servicios integrales.",
+        "Equipo profesional especializado con más de 33 años de experiencia en el sector."
+      ],
+      category: "Presentación",
+      status: "Destacado"
     }
   ];
 
