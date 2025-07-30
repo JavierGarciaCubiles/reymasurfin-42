@@ -136,6 +136,24 @@ const GremiosSection = () => {
   const herramientas: CardData[] = [
     {
       id: 1,
+      name: "Video Presentación Corporativa",
+      description: "Vídeo de presentación de nuestra empresa, mostrando nuestras instalaciones, equipo profesional y la calidad de nuestros servicios integrales.",
+      icon: Play,
+      image: "https://images.unsplash.com/photo-1611162617474-5b21e879e113?auto=format&fit=crop&w=300&h=300",
+      additionalImages: [
+        "https://images.unsplash.com/photo-1574717024653-61fd2cf4d44d?auto=format&fit=crop&w=300&h=300",
+        "https://images.unsplash.com/photo-1553877522-43269d4ea984?auto=format&fit=crop&w=300&h=300"
+      ],
+      imageDescriptions: [
+        "Video presentación de Reymasur 13 mostrando nuestras capacidades y experiencia.",
+        "Instalaciones modernas equipadas con la última tecnología para servicios integrales.",
+        "Equipo profesional especializado con más de 33 años de experiencia en el sector."
+      ],
+      category: "Presentación",
+      status: "Destacado"
+    },
+    {
+      id: 2,
       name: "Detectores Profesionales",
       description: "Equipos de ultrasonido, geófonos y detectores especializados para localización de fugas, gas y humedad con tecnología avanzada y precisión garantizada en cada intervención.",
       icon: Shield,
@@ -158,7 +176,7 @@ const GremiosSection = () => {
       status: "Disponible"
     },
     {
-      id: 2,
+      id: 3,
       name: "Inspección con Drones",
       description: "Tecnología de drones para inspección de tejados, fachadas y estructuras de difícil acceso, asegurando un análisis detallado y seguro.",
       icon: Camera,
@@ -175,7 +193,7 @@ const GremiosSection = () => {
       status: "Popular"
     },
     {
-      id: 3,
+      id: 4,
       name: "Sistemas de Cámaras",
       description: "Cámaras térmicas para diagnóstico energético y videocámaras para inspección de canalizaciones, optimizando el mantenimiento y la eficiencia.",
       icon: Camera,
@@ -192,7 +210,7 @@ const GremiosSection = () => {
       status: "Nuevo"
     },
     {
-      id: 4,
+      id: 5,
       name: "Herramientas Especializadas",
       description: "Equipos profesionales y maquinaria avanzada para cada tipo de trabajo especializado, garantizando resultados de alta calidad en cualquier proyecto.",
       icon: Wrench,
@@ -207,24 +225,6 @@ const GremiosSection = () => {
       ],
       category: "Tecnología",
       status: "Premium"
-    },
-    {
-      id: 5,
-      name: "Video Presentación Corporativa",
-      description: "Vídeo de presentación de nuestra empresa, mostrando nuestras instalaciones, equipo profesional y la calidad de nuestros servicios integrales.",
-      icon: Play,
-      image: "https://images.unsplash.com/photo-1611162617474-5b21e879e113?auto=format&fit=crop&w=300&h=300",
-      additionalImages: [
-        "https://images.unsplash.com/photo-1574717024653-61fd2cf4d44d?auto=format&fit=crop&w=300&h=300",
-        "https://images.unsplash.com/photo-1553877522-43269d4ea984?auto=format&fit=crop&w=300&h=300"
-      ],
-      imageDescriptions: [
-        "Video presentación de Reymasur 13 mostrando nuestras capacidades y experiencia.",
-        "Instalaciones modernas equipadas con la última tecnología para servicios integrales.",
-        "Equipo profesional especializado con más de 33 años de experiencia en el sector."
-      ],
-      category: "Presentación",
-      status: "Destacado"
     }
   ];
 
@@ -323,11 +323,7 @@ const GremiosSection = () => {
                     {card.id === 1 ? (
                       <>
                         <h4 className="font-semibold text-sm sm:text-base mb-2">
-                          {currentImageIndex === 0 ? "Equipos de ultrasonido" :
-                           currentImageIndex === 1 ? "Geófonos" :
-                           currentImageIndex === 2 ? "Detectores de fugas" :
-                           currentImageIndex === 3 ? "Detectores de gas" :
-                           currentImageIndex === 4 ? "Detectores de humedad" : ""}
+                          {currentImageIndex === 0 ? "Video Presentación Corporativa" : ""}
                         </h4>
                         <p className="text-gray-600 text-xs sm:text-sm">
                           {allDescriptions[currentImageIndex]}
@@ -354,13 +350,22 @@ const GremiosSection = () => {
                   exit={{ opacity: 0, width: 0 }}
                   className="flex items-center justify-center relative h-40 sm:h-full mt-2 sm:mt-0"
                 >
-                  <div className="rounded-xl overflow-hidden relative w-full h-full max-h-[160px] sm:max-h-[450px] shadow-lg">
-                    <img
-                      src={allImages[currentImageIndex]}
-                      alt={card.name}
-                      className="w-full h-full object-cover transition-all duration-300 hover:scale-105 cursor-pointer rounded-xl"
+                  {card.id === 1 ? (
+                    <iframe
+                      src="https://www.youtube.com/embed/TU_VIDEO_ID"
+                      title="Video Presentación Corporativa"
+                      className="w-full h-full rounded-xl"
+                      allowFullScreen
                     />
-                  </div>
+                  ) : (
+                    <div className="rounded-xl overflow-hidden relative w-full h-full max-h-[160px] sm:max-h-[450px] shadow-lg">
+                      <img
+                        src={allImages[currentImageIndex]}
+                        alt={card.name}
+                        className="w-full h-full object-cover transition-all duration-300 hover:scale-105 cursor-pointer rounded-xl"
+                      />
+                    </div>
+                  )}
                   
                   {allImages.length > 1 && (
                     <>
