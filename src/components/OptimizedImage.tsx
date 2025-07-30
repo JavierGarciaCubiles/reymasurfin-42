@@ -61,6 +61,19 @@ export const OptimizedImage: React.FC<OptimizedImageProps> = ({
     onError?.();
   };
 
+  // Map our priority system to HTML fetchPriority values
+  const getFetchPriority = (): "high" | "low" | "auto" => {
+    switch (priority) {
+      case 'high':
+        return 'high';
+      case 'low':
+        return 'low';
+      case 'normal':
+      default:
+        return 'auto';
+    }
+  };
+
   if (hasError) {
     return (
       <div className={`${className} bg-gray-100 flex items-center justify-center`}>
@@ -84,7 +97,7 @@ export const OptimizedImage: React.FC<OptimizedImageProps> = ({
           }`}
           loading={lazy ? 'lazy' : 'eager'}
           decoding={priority === 'high' ? 'sync' : 'async'}
-          fetchPriority={priority}
+          fetchPriority={getFetchPriority()}
           onLoad={handleLoad}
           onError={handleError}
         />
