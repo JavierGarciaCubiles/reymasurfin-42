@@ -186,7 +186,7 @@ const GremiosSection = () => {
     {
       id: 4,
       name: "Sistemas de Cámaras",
-      description: "Videocámaras profesionales para inspección de canalizaciones y diagnóstico de instalaciones, con diferentes alcances según las necesidades del proyecto.",
+      description: "Videocámaras profesionales para inspección de canalizaciones y diagnóstico de instalaciones, adaptadas a distintos alcances según las necesidades del proyecto.",
       icon: Camera,
       image: "/lovable-uploads/582702c9-4a42-4bb3-ac8c-821e9891c81c.png",
       additionalImages: [
