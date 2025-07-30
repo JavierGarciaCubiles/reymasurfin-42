@@ -153,7 +153,7 @@ const GremiosSection = () => {
     {
       id: 2,
       name: "Detectores Profesionales",
-      description: "Equipos avanzados y precisos diseñados para la localización de fugas, gas y humedad en cada intervención.",
+      description: "Equipos avanzados y precisos diseñados para la localización de fugas, gas y humedad.",
       icon: Shield,
       image: "/lovable-uploads/91cf0d54-a182-406b-9adb-a65818e4e7e7.png",
       additionalImages: [
@@ -169,7 +169,7 @@ const GremiosSection = () => {
     {
       id: 3,
       name: "Inspección con Drones",
-      description: "Tecnología de drones para inspección de tejados, fachadas y estructuras de difícil acceso, asegurando un análisis detallado y seguro.",
+      description: "Tecnología de drones para inspecciones detalladas y seguras de tejados, fachadas y estructuras de difícil acceso.",
       icon: Camera,
       image: "https://images.unsplash.com/photo-1460925895917-afdab827c52f?auto=format&fit=crop&w=300&h=300",
       additionalImages: [
