@@ -137,7 +137,7 @@ const GremiosSection = () => {
     {
       id: 1,
       name: "Video Presentación Corporativa",
-      description: "Vídeo de presentación de nuestra empresa, mostrando nuestras instalaciones, equipo profesional y la calidad de nuestros servicios integrales.",
+      description: "Vídeo de presentación de nuestras herramientas especializadas.",
       icon: Play,
       image: "https://raw.githubusercontent.com/JavierGarciaCubiles/reymasurfin-42/main/video%20presentacion.mp4",
       additionalImages: [
