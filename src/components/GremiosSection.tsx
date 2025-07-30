@@ -139,7 +139,7 @@ const GremiosSection = () => {
       name: "Video Presentación Corporativa",
       description: "Vídeo de presentación de nuestra empresa, mostrando nuestras instalaciones, equipo profesional y la calidad de nuestros servicios integrales.",
       icon: Play,
-      image: "https://images.unsplash.com/photo-1611162617474-5b21e879e113?auto=format&fit=crop&w=300&h=300",
+      image: "https://raw.githubusercontent.com/JavierGarciaCubiles/reymasurfin-42/main/video%20presentacion.mp4",
       additionalImages: [
         "https://images.unsplash.com/photo-1574717024653-61fd2cf4d44d?auto=format&fit=crop&w=300&h=300",
         "https://images.unsplash.com/photo-1553877522-43269d4ea984?auto=format&fit=crop&w=300&h=300"
@@ -354,8 +354,11 @@ const GremiosSection = () => {
                     <video
                       src="https://raw.githubusercontent.com/JavierGarciaCubiles/reymasurfin-42/main/video%20presentacion.mp4"
                       controls
+                      autoPlay
+                      muted
+                      loop
                       className="w-full h-full rounded-xl object-cover"
-                      poster="https://images.unsplash.com/photo-1611162617474-5b21e879e113?auto=format&fit=crop&w=300&h=300"
+                      preload="metadata"
                     >
                       Tu navegador no soporta el elemento de video.
                     </video>
