@@ -12,7 +12,7 @@ const benefits = [{
 }, {
   iconImage: "/lovable-uploads/20b5734d-611d-4f6a-81b2-4de0782324a5.png",
   title: "Equipo Profesional",
-  description: "Albañiles y constructores certificados décadas de experiencia. Formación continua y técnicas de vanguardia."
+  description: "Albañiles y constructores certificados con décadas de experiencia. Formación continua y técnicas de vanguardia."
 }, {
   iconImage: "/lovable-uploads/26857888-d20a-4fb4-85b1-31dc17cf7ea8.png",
   title: "Seguros y Garantías",
