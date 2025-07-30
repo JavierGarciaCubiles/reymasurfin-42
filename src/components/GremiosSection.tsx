@@ -34,6 +34,7 @@ import { useScrollReveal } from "@/hooks/useScrollReveal";
 import Autoplay from "embla-carousel-autoplay";
 import { motion, AnimatePresence } from "framer-motion";
 import { cn } from "@/lib/utils";
+import { OptimizedImage } from './OptimizedImage';
 
 interface ServiceItem {
   name: string;
@@ -131,7 +132,7 @@ const GremiosSection = () => {
     return urls;
   }, []);
 
-  const { imagesLoaded, loadedImages } = useImagePreloader(allImageUrls);
+  const { imagesLoaded, loadedImages, loadingProgress } = useImagePreloader(allImageUrls, { priority: 'high' });
 
   const herramientas: CardData[] = [
     {
@@ -401,10 +402,12 @@ const GremiosSection = () => {
                     </video>
                   ) : (
                     <div className="rounded-xl overflow-hidden relative w-full h-full max-h-[160px] sm:max-h-[450px] shadow-lg">
-                      <img
+                      <OptimizedImage
                         src={allImages[currentImageIndex]}
                         alt={card.name}
                         className="w-full h-full object-cover transition-all duration-300 hover:scale-105 cursor-pointer rounded-xl"
+                        priority={isExpanded ? 'high' : 'normal'}
+                        lazy={!isExpanded}
                       />
                     </div>
                   )}
@@ -473,6 +476,16 @@ const GremiosSection = () => {
           </p>
         </div>
 
+        {/* Indicador de progreso de carga */}
+        {!imagesLoaded && loadingProgress > 0 && (
+          <div className="fixed top-0 left-0 w-full h-1 bg-gray-200 z-50">
+            <div 
+              className="h-full bg-gradient-to-r from-reymasur-green-500 to-reymasur-green-700 transition-all duration-300"
+              style={{ width: `${loadingProgress}%` }}
+            />
+          </div>
+        )}
+
         <div className="bg-gradient-to-br from-reymasur-green-50 to-reymasur-blue-50 rounded-2xl md:rounded-3xl shadow-xl p-4 md:p-8 mb-8 md:mb-16">
           <div className="flex flex-col sm:flex-row lg:flex-row gap-2 lg:gap-1 h-auto sm:h-[200px] lg:h-[300px]">
             {guildsData.map((guild, index) => (
@@ -500,10 +513,12 @@ const GremiosSection = () => {
                       }
                     `}>
                       {loadedImages.has(guild.iconSrc) ? (
-                        <img 
-                          src={guild.iconSrc} 
+                        <OptimizedImage
+                          src={guild.iconSrc}
                           alt={guild.title}
                           className="h-6 w-6 lg:h-8 lg:w-8 object-contain"
+                          priority="high"
+                          lazy={false}
                         />
                       ) : (
                         <Skeleton className="h-6 w-6 lg:h-8 lg:w-8 rounded" />
@@ -536,10 +551,12 @@ const GremiosSection = () => {
                         >
                           {service.type === "image" && service.src ? (
                             loadedImages.has(service.src) ? (
-                              <img 
-                                src={service.src} 
+                              <OptimizedImage
+                                src={service.src}
                                 alt={service.name}
                                 className="h-4 w-4 md:h-6 md:w-6 lg:h-8 lg:w-8 object-contain mb-1"
+                                priority="normal"
+                                lazy={true}
                               />
                             ) : (
                               <Skeleton className="h-4 w-4 md:h-6 md:w-6 lg:h-8 lg:w-8 rounded mb-1" />
