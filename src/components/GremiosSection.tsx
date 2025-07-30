@@ -190,17 +190,17 @@ const GremiosSection = () => {
       name: "Sistemas de Cámaras",
       description: "Videocámaras profesionales para inspección de canalizaciones y diagnóstico de instalaciones, con diferentes alcances según las necesidades del proyecto.",
       icon: Camera,
-      image: "/lovable-uploads/b86dde82-0f68-449e-a3e3-10b6114c2aa8.png",
+      image: "/lovable-uploads/582702c9-4a42-4bb3-ac8c-821e9891c81c.png",
       additionalImages: [
+        "/lovable-uploads/b86dde82-0f68-449e-a3e3-10b6114c2aa8.png",
         "/lovable-uploads/729dd8e4-c3ba-4ba7-8022-88368e03a331.png",
-        "/lovable-uploads/bc208725-0d92-419a-9880-f78c81b5d38e.png",
-        "/lovable-uploads/582702c9-4a42-4bb3-ac8c-821e9891c81c.png"
+        "/lovable-uploads/bc208725-0d92-419a-9880-f78c81b5d38e.png"
       ],
       imageDescriptions: [
+        "Endoscopio compacto y flexible diseñado específicamente para la introducción en tuberías de poco diámetro, permitiendo inspecciones precisas en espacios reducidos y conduits estrechos con máxima maniobrabilidad y claridad visual.",
         "Videocámara profesional de hasta 20 metros con pantalla integrada y sistema de iluminación LED, ideal para inspecciones detalladas de tuberías y canalizaciones de mediano alcance.",
         "Videocámara avanzada WÖHLER de hasta 50 metros con tecnología de grabación digital y pantalla táctil de alta resolución, perfecta para inspecciones de largo alcance en sistemas complejos de canalización.",
-        "Cámara térmica especializada para localización precisa de fugas con tecnología infrarroja avanzada, permitiendo detectar variaciones de temperatura invisibles al ojo humano para identificar filtraciones ocultas en paredes, techos y estructuras.",
-        "Endoscopio compacto y flexible diseñado específicamente para la introducción en tuberías de poco diámetro, permitiendo inspecciones precisas en espacios reducidos y conduits estrechos con máxima maniobrabilidad y claridad visual."
+        "Cámara térmica especializada para localización precisa de fugas con tecnología infrarroja avanzada, permitiendo detectar variaciones de temperatura invisibles al ojo humano para identificar filtraciones ocultas en paredes, techos y estructuras."
       ],
       category: "Tecnología",
       status: "Nuevo"
@@ -210,17 +210,11 @@ const GremiosSection = () => {
       name: "Herramientas Especializadas",
       description: "Equipos profesionales y maquinaria avanzada para cada tipo de trabajo especializado, garantizando resultados de alta calidad en cualquier proyecto.",
       icon: Wrench,
-      image: "https://images.unsplash.com/photo-1486312338219-ce68d2c6f44d?auto=format&fit=crop&w=300&h=300",
+      image: "/lovable-uploads/bbc620b2-7414-4555-a0b6-e51150a32c8e.png",
       additionalImages: [
-        "https://images.unsplash.com/photo-1591123120675-6f7f1f09f4e1?auto=format&fit=crop&w=300&h=300",
-        "https://images.unsplash.com/photo-1542838132-92c53300491e1?auto=format&fit=crop&w=300&h=300",
-        "/lovable-uploads/bbc620b2-7414-4555-a0b6-e51150a32c8e.png",
         "/lovable-uploads/678df23f-6550-4aef-af5e-c268f708877b.png"
       ],
       imageDescriptions: [
-        "Maquinaria avanzada diseñada para trabajos especializados con máxima durabilidad.",
-        "Equipos de alta precisión adaptados a las necesidades específicas de cada proyecto.",
-        "Herramientas profesionales que garantizan la máxima eficiencia en cada intervención.",
         "Decapador profesional de alta potencia para soldaduras especiales, equipado con múltiples boquillas intercambiables y control de temperatura preciso, ideal para trabajos de soldadura de tuberías de diferentes materiales y diámetros.",
         "Electrosoldador automático con sistema de control digital y múltiples accesorios, diseñado para soldaduras de tuberías de polietileno con máxima precisión y garantía de estanqueidad en instalaciones críticas."
       ],
@@ -261,11 +255,11 @@ const GremiosSection = () => {
 
     const allImages = [card.image, ...card.additionalImages];
     const allDescriptions = card.id === 4 
-      ? ["Videocámara de hasta 20 metros", "Videocámara de hasta 50 metros", "Cámara térmica para localizaciones de fuga", "Endoscopio para introducción en tuberías de poco diámetro"]
+      ? ["Endoscopio para introducción en tuberías de poco diámetro", "Videocámara de hasta 20 metros", "Videocámara de hasta 50 metros", "Cámara térmica para localizaciones de fuga"]
       : card.id === 2
       ? ["Detector de fuga ultrasonido", "Detector de fuga gas traza"]
       : card.id === 5
-      ? ["Herramientas profesionales", "Equipos de alta precisión", "Maquinaria especializada", "Decapador para soldaduras especiales", "Electrosoldador"]
+      ? ["Decapador para soldaduras especiales", "Electrosoldador"]
       : [card.description, ...card.imageDescriptions];
 
     return (
@@ -355,12 +349,12 @@ const GremiosSection = () => {
                         </h4>
                         <p className="text-gray-600 text-xs sm:text-sm">
                           {currentImageIndex === 0 
-                            ? "Equipada con tecnología de vanguardia para inspecciones detalladas, esta videocámara ofrece una visión clara y precisa en entornos de hasta 20 metros. Perfecta para diagnósticos de tuberías residenciales y comerciales con sistema de iluminación LED integrado."
+                            ? "Herramienta de inspección ultracompacta con cable flexible de alta resistencia, específicamente diseñada para el acceso y exploración de tuberías de diámetro reducido. Su tamaño compacto y maniobrabilidad excepcional lo convierten en la solución ideal para diagnósticos precisos en espacios muy limitados."
                             : currentImageIndex === 1
-                            ? "Experimenta la máxima eficiencia en tus proyectos con esta videocámara de largo alcance, diseñada para cubrir distancias de hasta 50 metros con una calidad de imagen excepcional. Ideal para sistemas industriales complejos con grabación digital y análisis avanzado."
+                            ? "Equipada con tecnología de vanguardia para inspecciones detalladas, esta videocámara ofrece una visión clara y precisa en entornos de hasta 20 metros. Perfecta para diagnósticos de tuberías residenciales y comerciales con sistema de iluminación LED integrado."
                             : currentImageIndex === 2
-                            ? "Tecnología infrarroja de última generación que permite detectar variaciones de temperatura invisibles al ojo humano. Perfecta para localizar fugas ocultas en paredes, techos y estructuras sin necesidad de demoliciones, ahorrando tiempo y costos en reparaciones."
-                            : "Herramienta de inspección ultracompacta con cable flexible de alta resistencia, específicamente diseñada para el acceso y exploración de tuberías de diámetro reducido. Su tamaño compacto y maniobrabilidad excepcional lo convierten en la solución ideal para diagnósticos precisos en espacios muy limitados."
+                            ? "Experimenta la máxima eficiencia en tus proyectos con esta videocámara de largo alcance, diseñada para cubrir distancias de hasta 50 metros con una calidad de imagen excepcional. Ideal para sistemas industriales complejos con grabación digital y análisis avanzado."
+                            : "Tecnología infrarroja de última generación que permite detectar variaciones de temperatura invisibles al ojo humano. Perfecta para localizar fugas ocultas en paredes, techos y estructuras sin necesidad de demoliciones, ahorrando tiempo y costos en reparaciones."
                           }
                         </p>
                       </>
@@ -371,12 +365,6 @@ const GremiosSection = () => {
                         </h4>
                         <p className="text-gray-600 text-xs sm:text-sm">
                           {currentImageIndex === 0 
-                            ? "Maquinaria de última generación diseñada para resistir las condiciones más exigentes, garantizando un rendimiento óptimo y duradero en cada proyecto profesional."
-                            : currentImageIndex === 1
-                            ? "Instrumentos de precisión milimétrica que se adaptan perfectamente a los requerimientos específicos de cada trabajo, asegurando resultados profesionales excepcionales."
-                            : currentImageIndex === 2
-                            ? "Conjunto completo de herramientas profesionales que maximizan la eficiencia operativa, reduciendo tiempos de trabajo mientras mantienen los más altos estándares de calidad."
-                            : currentImageIndex === 3
                             ? "Equipo térmico profesional de alta potencia con control preciso de temperatura y múltiples accesorios especializados. Diseñado específicamente para trabajos de soldadura en tuberías y materiales termoplásticos, garantizando uniones perfectas y duraderas en instalaciones críticas."
                             : "Sistema de soldadura por electrofusión con tecnología digital avanzada y control automático de parámetros. Incluye múltiples accesorios y adaptadores para diferentes diámetros de tubería, asegurando soldaduras de máxima calidad y estanqueidad absoluta en redes de distribución."
                           }
