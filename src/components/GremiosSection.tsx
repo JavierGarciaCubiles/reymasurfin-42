@@ -288,7 +288,6 @@ const GremiosSection = () => {
                     initial={{ opacity: 0, y: 20 }}
                     animate={{ opacity: 1, y: 0 }}
                     exit={{ opacity: 0, y: 20 }}
-                    transition={{ delay: 0.1 }}
                     className="flex gap-2 mb-4"
                   >
                     <span className="px-3 py-1 bg-blue-600 text-white text-xs rounded-full font-medium">
@@ -394,7 +393,6 @@ const GremiosSection = () => {
                       src="https://raw.githubusercontent.com/JavierGarciaCubiles/reymasurfin-42/main/video%20presentacion.mp4"
                       controls
                       autoPlay
-                      muted
                       loop
                       className="w-full h-full rounded-xl object-cover"
                       preload="metadata"
