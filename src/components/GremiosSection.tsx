@@ -146,7 +146,6 @@ const GremiosSection = () => {
       ],
       imageDescriptions: [
         "Video presentación de Reymasur 13 mostrando nuestras capacidades y experiencia.",
-        "Instalaciones modernas equipadas con la última tecnología para servicios integrales.",
         "Equipo profesional especializado con más de 33 años de experiencia en el sector."
       ],
       category: "Presentación",
