@@ -206,7 +206,7 @@ const GremiosSection = () => {
     {
       id: 5,
       name: "Herramientas Especializadas",
-      description: "Equipos profesionales y maquinaria avanzada para cada tipo de trabajo especializado, garantizando resultados de alta calidad en cualquier proyecto.",
+      description: "Equipos y maquinaria avanzados para trabajos especializados, asegurando resultados de alta calidad.",
       icon: Wrench,
       image: "/lovable-uploads/bbc620b2-7414-4555-a0b6-e51150a32c8e.png",
       additionalImages: [
