@@ -351,12 +351,14 @@ const GremiosSection = () => {
                   className="flex items-center justify-center relative h-40 sm:h-full mt-2 sm:mt-0"
                 >
                   {card.id === 1 ? (
-                    <iframe
-                      src="https://www.youtube.com/embed/TU_VIDEO_ID"
-                      title="Video Presentación Corporativa"
-                      className="w-full h-full rounded-xl"
-                      allowFullScreen
-                    />
+                    <video
+                      src="https://raw.githubusercontent.com/JavierGarciaCubiles/reymasurfin-42/main/video%20presentacion.mp4"
+                      controls
+                      className="w-full h-full rounded-xl object-cover"
+                      poster="https://images.unsplash.com/photo-1611162617474-5b21e879e113?auto=format&fit=crop&w=300&h=300"
+                    >
+                      Tu navegador no soporta el elemento de video.
+                    </video>
                   ) : (
                     <div className="rounded-xl overflow-hidden relative w-full h-full max-h-[160px] sm:max-h-[450px] shadow-lg">
                       <img
@@ -367,7 +369,7 @@ const GremiosSection = () => {
                     </div>
                   )}
                   
-                  {allImages.length > 1 && (
+                  {allImages.length > 1 && card.id !== 1 && (
                     <>
                       <button
                         onClick={(e) => {
