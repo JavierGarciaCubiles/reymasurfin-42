@@ -1,4 +1,3 @@
-
 import React, { useState, useMemo } from "react";
 import { Card, CardContent } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
@@ -200,11 +199,13 @@ const GremiosSection = () => {
       icon: Camera,
       image: "/lovable-uploads/b86dde82-0f68-449e-a3e3-10b6114c2aa8.png",
       additionalImages: [
-        "/lovable-uploads/729dd8e4-c3ba-4ba7-8022-88368e03a331.png"
+        "/lovable-uploads/729dd8e4-c3ba-4ba7-8022-88368e03a331.png",
+        "/lovable-uploads/bc208725-0d92-419a-9880-f78c81b5d38e.png"
       ],
       imageDescriptions: [
         "Videocámara profesional de hasta 20 metros con pantalla integrada y sistema de iluminación LED, ideal para inspecciones detalladas de tuberías y canalizaciones de mediano alcance.",
-        "Videocámara avanzada WÖHLER de hasta 50 metros con tecnología de grabación digital y pantalla táctil de alta resolución, perfecta para inspecciones de largo alcance en sistemas complejos de canalización."
+        "Videocámara avanzada WÖHLER de hasta 50 metros con tecnología de grabación digital y pantalla táctil de alta resolución, perfecta para inspecciones de largo alcance en sistemas complejos de canalización.",
+        "Cámara térmica especializada para localización precisa de fugas con tecnología infrarroja avanzada, permitiendo detectar variaciones de temperatura invisibles al ojo humano para identificar filtraciones ocultas en paredes, techos y estructuras."
       ],
       category: "Tecnología",
       status: "Nuevo"
@@ -217,7 +218,7 @@ const GremiosSection = () => {
       image: "https://images.unsplash.com/photo-1486312338219-ce68d2c6f44d?auto=format&fit=crop&w=300&h=300",
       additionalImages: [
         "https://images.unsplash.com/photo-1591123120675-6f7f1f09f4e1?auto=format&fit=crop&w=300&h=300",
-        "https://images.unsplash.com/photo-1542838132-92c53300491e?auto=format&fit=crop&w=300&h=300"
+        "https://images.unsplash.com/photo-1542838132-92c53300491e1?auto=format&fit=crop&w=300&h=300"
       ],
       imageDescriptions: [
         "Maquinaria avanzada diseñada para trabajos especializados con máxima durabilidad.",
@@ -260,7 +261,7 @@ const GremiosSection = () => {
 
     const allImages = [card.image, ...card.additionalImages];
     const allDescriptions = card.id === 4 
-      ? ["Videocámara de hasta 20 metros", "Videocámara de hasta 50 metros"]
+      ? ["Videocámara de hasta 20 metros", "Videocámara de hasta 50 metros", "Cámara térmica para localizaciones de fuga"]
       : [card.description, ...card.imageDescriptions];
 
     return (
@@ -339,7 +340,9 @@ const GremiosSection = () => {
                         <p className="text-gray-600 text-xs sm:text-sm">
                           {currentImageIndex === 0 
                             ? "Equipada con tecnología de vanguardia para inspecciones detalladas, esta videocámara ofrece una visión clara y precisa en entornos de hasta 20 metros. Perfecta para diagnósticos de tuberías residenciales y comerciales con sistema de iluminación LED integrado."
-                            : "Experimenta la máxima eficiencia en tus proyectos con esta videocámara de largo alcance, diseñada para cubrir distancias de hasta 50 metros con una calidad de imagen excepcional. Ideal para sistemas industriales complejos con grabación digital y análisis avanzado."
+                            : currentImageIndex === 1
+                            ? "Experimenta la máxima eficiencia en tus proyectos con esta videocámara de largo alcance, diseñada para cubrir distancias de hasta 50 metros con una calidad de imagen excepcional. Ideal para sistemas industriales complejos con grabación digital y análisis avanzado."
+                            : "Tecnología infrarroja de última generación que permite detectar variaciones de temperatura invisibles al ojo humano. Perfecta para localizar fugas ocultas en paredes, techos y estructuras sin necesidad de demoliciones, ahorrando tiempo y costos en reparaciones."
                           }
                         </p>
                       </>
