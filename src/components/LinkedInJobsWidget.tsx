@@ -3,15 +3,13 @@ import { useState } from "react";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
-import { Briefcase, MapPin, Clock, Users, ExternalLink, Linkedin } from "lucide-react";
+import { Briefcase, MapPin, ExternalLink, Linkedin } from "lucide-react";
 
 interface JobOffer {
   id: string;
   title: string;
   location: string;
   type: string;
-  posted: string;
-  applicants: string;
   description: string;
 }
 
@@ -22,8 +20,6 @@ const LinkedInJobsWidget = () => {
       title: "Técnico en Reformas Integrales",
       location: "Sevilla, España",
       type: "Tiempo completo",
-      posted: "Hace 3 días",
-      applicants: "12 candidatos",
       description: "Buscamos técnico especializado en reformas integrales con experiencia en siniestros y seguros."
     },
     {
@@ -31,8 +27,6 @@ const LinkedInJobsWidget = () => {
       title: "Especialista en Siniestros",
       location: "Sevilla, España",
       type: "Tiempo completo",
-      posted: "Hace 1 semana",
-      applicants: "8 candidatos",
       description: "Profesional con experiencia en tramitación de siniestros y relación con aseguradoras."
     },
     {
@@ -40,8 +34,6 @@ const LinkedInJobsWidget = () => {
       title: "Arquitecto Técnico",
       location: "Sevilla, España",
       type: "Tiempo parcial",
-      posted: "Hace 2 semanas",
-      applicants: "15 candidatos",
       description: "Arquitecto técnico para supervisión de obras y peritaciones técnicas."
     }
   ]);
@@ -108,18 +100,7 @@ Atentamente,`;
                   {job.description}
                 </p>
                 
-                <div className="flex items-center justify-between">
-                  <div className="flex flex-col gap-1 text-xs text-gray-500">
-                    <div className="flex items-center gap-1">
-                      <Clock className="h-3 w-3" />
-                      <span>{job.posted}</span>
-                    </div>
-                    <div className="flex items-center gap-1">
-                      <Users className="h-3 w-3" />
-                      <span>{job.applicants}</span>
-                    </div>
-                  </div>
-                  
+                <div className="flex items-center justify-end">
                   <Button 
                     size="sm" 
                     className="bg-blue-600 hover:bg-blue-700 text-white text-xs px-3 py-1 h-7"
@@ -139,7 +120,7 @@ Atentamente,`;
             variant="outline" 
             size="sm" 
             className="w-full text-blue-600 border-blue-200 hover:bg-blue-50 text-xs"
-            onClick={() => window.open('https://www.linkedin.com/company/reymasur-13-slu', '_blank')}
+            onClick={() => window.open('https://www.linkedin.com/company/reymasur-13-slu/', '_blank')}
           >
             <Linkedin className="h-3 w-3 mr-2" />
             Ver más en LinkedIn
