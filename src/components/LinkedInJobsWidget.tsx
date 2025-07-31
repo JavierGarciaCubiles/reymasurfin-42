@@ -17,21 +17,28 @@ const LinkedInJobsWidget = () => {
   const [jobs] = useState<JobOffer[]>([
     {
       id: "1",
-      title: "Técnico en Reformas Integrales",
+      title: "Especialista en Fontanería",
       location: "Sevilla, España",
       type: "Tiempo completo",
       description: "Buscamos técnico especializado en reformas integrales con experiencia en siniestros y seguros."
     },
     {
       id: "2", 
-      title: "Especialista en Siniestros",
+      title: "Especialista en Albañilería",
       location: "Sevilla, España",
       type: "Tiempo completo",
       description: "Profesional con experiencia en tramitación de siniestros y relación con aseguradoras."
     },
     {
       id: "3",
-      title: "Arquitecto Técnico",
+      title: "Especialista en Carpintería Metálica",
+      location: "Sevilla, España",
+      type: "Tiempo parcial",
+      description: "Arquitecto técnico para supervisión de obras y peritaciones técnicas."
+    },
+    {
+      id: "4",
+      title: "Especialista en Electricidad",
       location: "Sevilla, España",
       type: "Tiempo parcial",
       description: "Arquitecto técnico para supervisión de obras y peritaciones técnicas."
