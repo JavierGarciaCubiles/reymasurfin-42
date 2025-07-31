@@ -1,4 +1,3 @@
-
 import { useState } from "react";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
@@ -76,7 +75,7 @@ Atentamente,`;
       </CardHeader>
       
       <CardContent className="p-0 flex flex-col flex-grow">
-        <div className="max-h-96 overflow-y-auto flex-grow">
+        <div className="max-h-[500px] overflow-y-auto flex-grow">
           <div className="space-y-0">
             {jobs.map((job, index) => (
               <div 
@@ -124,7 +123,7 @@ Atentamente,`;
           </div>
         </div>
         
-        <div className="p-4 border-t bg-gray-50 flex-shrink-0">
+        <div className="p-2 border-t bg-gray-50 flex-shrink-0">
           <Button 
             variant="outline" 
             size="sm" 

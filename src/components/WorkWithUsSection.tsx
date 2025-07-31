@@ -1,4 +1,3 @@
-
 import { useState } from "react";
 import { useScrollReveal } from "@/hooks/useScrollReveal";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
@@ -7,7 +6,7 @@ import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
 import { Label } from "@/components/ui/label";
 import { useToast } from "@/hooks/use-toast";
-import { Mail, Phone, User, MessageSquare, ArrowLeft } from "lucide-react";
+import { Mail, Phone, User, MessageSquare } from "lucide-react";
 import LinkedInJobsWidget from "./LinkedInJobsWidget";
 
 const WorkWithUsSection = () => {
@@ -169,15 +168,15 @@ Formulario de contacto de REYMASUR 13, S.L.U.
                     Completa el formulario y nos pondremos en contacto contigo
                   </CardDescription>
                   
-                  {/* Nuevo mensaje informativo */}
                   <div className="mt-4 p-3 bg-blue-50 rounded-lg border border-blue-200">
-                    <div className="flex items-center gap-2 text-blue-700 text-sm">
-                      <ArrowLeft className="h-4 w-4" />
-                      <span className="font-medium">¿Te interesa alguna oferta específica?</span>
+                    <div className="text-center">
+                      <div className="text-blue-700 text-sm font-medium mb-1">
+                        ¿Te interesa alguna oferta específica?
+                      </div>
+                      <p className="text-blue-600 text-xs">
+                        Puedes aplicar directamente desde el widget de LinkedIn o usar este formulario mencionando la posición que te interesa
+                      </p>
                     </div>
-                    <p className="text-blue-600 text-xs mt-1">
-                      Puedes aplicar directamente desde el widget de LinkedIn o usar este formulario mencionando la posición que te interesa
-                    </p>
                   </div>
                 </CardHeader>
                 <CardContent className="p-6">
