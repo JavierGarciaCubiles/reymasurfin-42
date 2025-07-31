@@ -11,6 +11,7 @@ interface OptimizedImageProps {
   placeholder?: string;
   onLoad?: () => void;
   onError?: () => void;
+  enableWebP?: boolean;
 }
 
 export const OptimizedImage: React.FC<OptimizedImageProps> = ({
@@ -21,16 +22,56 @@ export const OptimizedImage: React.FC<OptimizedImageProps> = ({
   lazy = true,
   placeholder,
   onLoad,
-  onError
+  onError,
+  enableWebP = true
 }) => {
   const [isLoaded, setIsLoaded] = useState(false);
   const [hasError, setHasError] = useState(false);
-  const [isInView, setIsInView] = useState(!lazy);
+  const [isInView, setIsInView] = useState(!lazy || priority === 'high');
+  const [optimizedSrc, setOptimizedSrc] = useState(src);
   const imgRef = useRef<HTMLImageElement>(null);
 
+  // Optimizar URL de imagen
   useEffect(() => {
-    if (!lazy) return;
+    const optimizeImageUrl = async () => {
+      let finalSrc = src;
+      
+      // Intentar WebP si está habilitado
+      if (enableWebP && !src.includes('.gif')) {
+        const supportsWebP = await new Promise<boolean>((resolve) => {
+          const webP = new Image();
+          webP.onload = webP.onerror = () => resolve(webP.height === 2);
+          webP.src = 'data:image/webp;base64,UklGRjoAAABXRUJQVlA4IC4AAACyAgCdASoCAAIALmk0mk0iIiIiIgBoSygABc6WWgAA/veff/0PP8bA//LwYAAA';
+        });
 
+        if (supportsWebP) {
+          const webpSrc = src.replace(/\.(jpg|jpeg|png)$/i, '.webp');
+          if (webpSrc !== src) {
+            // Verificar si existe la versión WebP
+            try {
+              const response = await fetch(webpSrc, { method: 'HEAD' });
+              if (response.ok) {
+                finalSrc = webpSrc;
+              }
+            } catch {
+              // Usar original si WebP no está disponible
+            }
+          }
+        }
+      }
+      
+      setOptimizedSrc(finalSrc);
+    };
+
+    optimizeImageUrl();
+  }, [src, enableWebP]);
+
+  // Intersection Observer más agresivo para imágenes críticas
+  useEffect(() => {
+    if (!lazy || priority === 'high') return;
+
+    const margin = priority === 'normal' ? '100px' : '200px';
+    
     const observer = new IntersectionObserver(
       ([entry]) => {
         if (entry.isIntersecting) {
@@ -39,8 +80,8 @@ export const OptimizedImage: React.FC<OptimizedImageProps> = ({
         }
       },
       { 
-        rootMargin: '50px',
-        threshold: 0.1 
+        rootMargin: margin,
+        threshold: 0.01
       }
     );
 
@@ -49,7 +90,7 @@ export const OptimizedImage: React.FC<OptimizedImageProps> = ({
     }
 
     return () => observer.disconnect();
-  }, [lazy]);
+  }, [lazy, priority]);
 
   const handleLoad = () => {
     setIsLoaded(true);
@@ -61,7 +102,6 @@ export const OptimizedImage: React.FC<OptimizedImageProps> = ({
     onError?.();
   };
 
-  // Map our priority system to HTML fetchPriority values
   const getFetchPriority = (): "high" | "low" | "auto" => {
     switch (priority) {
       case 'high':
@@ -90,12 +130,12 @@ export const OptimizedImage: React.FC<OptimizedImageProps> = ({
       
       {isInView && (
         <img
-          src={src}
+          src={optimizedSrc}
           alt={alt}
-          className={`${className} transition-opacity duration-300 ${
+          className={`${className} transition-opacity duration-200 ${
             isLoaded ? 'opacity-100' : 'opacity-0'
           }`}
-          loading={lazy ? 'lazy' : 'eager'}
+          loading={lazy && priority !== 'high' ? 'lazy' : 'eager'}
           decoding={priority === 'high' ? 'sync' : 'async'}
           fetchPriority={getFetchPriority()}
           onLoad={handleLoad}
