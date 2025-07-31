@@ -23,55 +23,17 @@ export const OptimizedImage: React.FC<OptimizedImageProps> = ({
   placeholder,
   onLoad,
   onError,
-  enableWebP = true
+  enableWebP = false // Deshabilitado por defecto para evitar problemas
 }) => {
   const [isLoaded, setIsLoaded] = useState(false);
   const [hasError, setHasError] = useState(false);
   const [isInView, setIsInView] = useState(!lazy || priority === 'high');
-  const [optimizedSrc, setOptimizedSrc] = useState(src);
   const imgRef = useRef<HTMLImageElement>(null);
 
-  // Optimizar URL de imagen
-  useEffect(() => {
-    const optimizeImageUrl = async () => {
-      let finalSrc = src;
-      
-      // Intentar WebP si está habilitado
-      if (enableWebP && !src.includes('.gif')) {
-        const supportsWebP = await new Promise<boolean>((resolve) => {
-          const webP = new Image();
-          webP.onload = webP.onerror = () => resolve(webP.height === 2);
-          webP.src = 'data:image/webp;base64,UklGRjoAAABXRUJQVlA4IC4AAACyAgCdASoCAAIALmk0mk0iIiIiIgBoSygABc6WWgAA/veff/0PP8bA//LwYAAA';
-        });
-
-        if (supportsWebP) {
-          const webpSrc = src.replace(/\.(jpg|jpeg|png)$/i, '.webp');
-          if (webpSrc !== src) {
-            // Verificar si existe la versión WebP
-            try {
-              const response = await fetch(webpSrc, { method: 'HEAD' });
-              if (response.ok) {
-                finalSrc = webpSrc;
-              }
-            } catch {
-              // Usar original si WebP no está disponible
-            }
-          }
-        }
-      }
-      
-      setOptimizedSrc(finalSrc);
-    };
-
-    optimizeImageUrl();
-  }, [src, enableWebP]);
-
-  // Intersection Observer más agresivo para imágenes críticas
+  // Intersection Observer simplificado
   useEffect(() => {
     if (!lazy || priority === 'high') return;
 
-    const margin = priority === 'normal' ? '100px' : '200px';
-    
     const observer = new IntersectionObserver(
       ([entry]) => {
         if (entry.isIntersecting) {
@@ -80,8 +42,8 @@ export const OptimizedImage: React.FC<OptimizedImageProps> = ({
         }
       },
       { 
-        rootMargin: margin,
-        threshold: 0.01
+        rootMargin: '50px',
+        threshold: 0.1
       }
     );
 
@@ -94,29 +56,21 @@ export const OptimizedImage: React.FC<OptimizedImageProps> = ({
 
   const handleLoad = () => {
     setIsLoaded(true);
+    setHasError(false);
     onLoad?.();
+    console.log('Imagen cargada correctamente:', src);
   };
 
   const handleError = () => {
     setHasError(true);
+    setIsLoaded(false);
     onError?.();
-  };
-
-  const getFetchPriority = (): "high" | "low" | "auto" => {
-    switch (priority) {
-      case 'high':
-        return 'high';
-      case 'low':
-        return 'low';
-      case 'normal':
-      default:
-        return 'auto';
-    }
+    console.error('Error al cargar imagen:', src);
   };
 
   if (hasError) {
     return (
-      <div className={`${className} bg-gray-100 flex items-center justify-center`}>
+      <div className={`${className} bg-gray-100 flex items-center justify-center min-h-[200px]`}>
         <span className="text-gray-400 text-sm">Error al cargar imagen</span>
       </div>
     );
@@ -124,22 +78,21 @@ export const OptimizedImage: React.FC<OptimizedImageProps> = ({
 
   return (
     <div className={`relative ${className}`} ref={imgRef}>
-      {!isLoaded && (
+      {!isLoaded && isInView && (
         <Skeleton className="absolute inset-0 w-full h-full" />
       )}
       
       {isInView && (
         <img
-          src={optimizedSrc}
+          src={src}
           alt={alt}
-          className={`${className} transition-opacity duration-200 ${
+          className={`${className} transition-opacity duration-300 ${
             isLoaded ? 'opacity-100' : 'opacity-0'
           }`}
           loading={lazy && priority !== 'high' ? 'lazy' : 'eager'}
-          decoding={priority === 'high' ? 'sync' : 'async'}
-          fetchPriority={getFetchPriority()}
           onLoad={handleLoad}
           onError={handleError}
+          style={{ display: isLoaded ? 'block' : 'block' }}
         />
       )}
     </div>
