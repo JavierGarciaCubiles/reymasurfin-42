@@ -29,7 +29,7 @@ const FloatingAssistantButton = ({ isOpen, onOpen, onClose }: FloatingAssistantB
           {/* Chica pixelada con color original */}
           <div className="absolute inset-0 flex items-center justify-center">
             <img 
-              src="/lovable-uploads/aceb8f88-a783-4512-b10f-d9b3f49c781f.png" 
+              src="/lovable-uploads/a295ecb2-b849-499e-820d-824690e9e8ea.png" 
               alt="Raquel - Asistente Virtual" 
               className="w-16 h-16 object-contain group-hover:scale-105 transition-transform duration-500"
             />
