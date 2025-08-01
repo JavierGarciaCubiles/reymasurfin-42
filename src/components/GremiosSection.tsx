@@ -228,6 +228,7 @@ const GremiosSection = () => {
   const [currentImageIndex, setCurrentImageIndex] = useState(0);
   const [isVideoPlaying, setIsVideoPlaying] = useState(false);
   const [videoError, setVideoError] = useState(false);
+  const [videoLoading, setVideoLoading] = useState(true);
   const videoRef = useRef<HTMLVideoElement>(null);
 
   const handleCardClick = (cardId: number) => {
@@ -240,38 +241,72 @@ const GremiosSection = () => {
     }
   };
 
-  const handleVideoPlay = async () => {
-    if (!videoRef.current) return;
+  const handleVideoPlay = async (e: React.MouseEvent) => {
+    e.stopPropagation();
+    
+    if (!videoRef.current) {
+      console.error('Video ref not available');
+      return;
+    }
 
+    const video = videoRef.current;
+    
     try {
       if (isVideoPlaying) {
-        videoRef.current.pause();
+        video.pause();
         setIsVideoPlaying(false);
+        console.log('Video pausado');
       } else {
         // Reset video if ended
-        if (videoRef.current.ended) {
-          videoRef.current.currentTime = 0;
+        if (video.ended) {
+          video.currentTime = 0;
         }
         
-        await videoRef.current.play();
+        setVideoLoading(true);
+        await video.play();
         setIsVideoPlaying(true);
         setVideoError(false);
+        setVideoLoading(false);
+        console.log('Video iniciado');
       }
     } catch (error) {
-      console.error('Error playing video:', error);
+      console.error('Error al reproducir video:', error);
       setVideoError(true);
       setIsVideoPlaying(false);
+      setVideoLoading(false);
     }
+  };
+
+  const handleVideoLoadedData = () => {
+    console.log('Video cargado correctamente');
+    setVideoLoading(false);
+    setVideoError(false);
+  };
+
+  const handleVideoCanPlay = () => {
+    console.log('Video listo para reproducir');
+    setVideoLoading(false);
   };
 
   const handleVideoEnded = () => {
     setIsVideoPlaying(false);
+    console.log('Video terminado');
   };
 
-  const handleVideoError = () => {
-    console.error('Video failed to load');
+  const handleVideoError = (e: any) => {
+    console.error('Error en el video:', e);
     setVideoError(true);
     setIsVideoPlaying(false);
+    setVideoLoading(false);
+  };
+
+  const handleVideoRetry = (e: React.MouseEvent) => {
+    e.stopPropagation();
+    setVideoError(false);
+    setVideoLoading(true);
+    if (videoRef.current) {
+      videoRef.current.load();
+    }
   };
 
   const handleNextImage = () => {
@@ -407,51 +442,44 @@ const GremiosSection = () => {
                         className="w-full h-full object-cover"
                         preload="metadata"
                         playsInline
+                        muted
+                        onLoadedData={handleVideoLoadedData}
+                        onCanPlay={handleVideoCanPlay}
                         onEnded={handleVideoEnded}
                         onError={handleVideoError}
                         onClick={(e) => e.stopPropagation()}
                       />
                       
-                      {/* Botón de play/pause grande */}
-                      {!videoError && (
-                        <button
-                          onClick={(e) => {
-                            e.stopPropagation();
-                            handleVideoPlay();
-                          }}
-                          className="absolute inset-0 flex items-center justify-center bg-black/30 hover:bg-black/50 transition-all duration-300 group"
-                        >
-                          <div className="bg-white/90 hover:bg-white rounded-full p-4 sm:p-6 transition-all duration-300 shadow-lg group-hover:scale-110">
-                            {isVideoPlaying ? (
-                              <Pause className="w-6 h-6 sm:w-8 sm:h-8 text-black" />
-                            ) : (
-                              <Play className="w-6 h-6 sm:w-8 sm:h-8 text-black ml-1" />
-                            )}
-                          </div>
-                        </button>
-                      )}
-
-                      {/* Mensaje de error */}
-                      {videoError && (
-                        <div className="absolute inset-0 flex items-center justify-center bg-gray-800/80">
-                          <div className="text-center text-white p-4">
-                            <div className="text-2xl mb-2">⚠️</div>
-                            <p className="text-sm">Error al cargar el video</p>
+                      {/* Overlay para el botón de play/pause */}
+                      <div className="absolute inset-0 flex items-center justify-center">
+                        {videoError ? (
+                          <div className="text-center text-white p-4 bg-black/70 rounded-lg">
+                            <div className="text-3xl mb-3">⚠️</div>
+                            <p className="text-sm mb-3">Error al cargar el video</p>
                             <button 
-                              onClick={(e) => {
-                                e.stopPropagation();
-                                setVideoError(false);
-                                if (videoRef.current) {
-                                  videoRef.current.load();
-                                }
-                              }}
-                              className="mt-2 px-3 py-1 bg-blue-600 hover:bg-blue-700 rounded text-xs transition-colors"
+                              onClick={handleVideoRetry}
+                              className="px-4 py-2 bg-blue-600 hover:bg-blue-700 rounded text-sm transition-colors"
                             >
                               Reintentar
                             </button>
                           </div>
-                        </div>
-                      )}
+                        ) : videoLoading ? (
+                          <div className="bg-black/70 rounded-full p-6">
+                            <div className="animate-spin rounded-full h-8 w-8 border-b-2 border-white"></div>
+                          </div>
+                        ) : (
+                          <button
+                            onClick={handleVideoPlay}
+                            className="bg-black/50 hover:bg-black/70 rounded-full p-6 sm:p-8 transition-all duration-300 group hover:scale-110 active:scale-95"
+                          >
+                            {isVideoPlaying ? (
+                              <Pause className="w-8 h-8 sm:w-12 sm:h-12 text-white" />
+                            ) : (
+                              <Play className="w-8 h-8 sm:w-12 sm:h-12 text-white ml-1" />
+                            )}
+                          </button>
+                        )}
+                      </div>
                     </div>
                   ) : (
                     <div className="rounded-xl overflow-hidden relative w-full h-full max-h-[160px] sm:max-h-[450px] shadow-lg">
