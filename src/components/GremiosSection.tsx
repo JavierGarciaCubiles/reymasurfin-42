@@ -1,9 +1,9 @@
-import React, { useState, useMemo } from "react";
+import React, { useState, useMemo, useRef } from "react";
 import { Card, CardContent } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { Skeleton } from "@/components/ui/skeleton";
 import { Carousel, CarouselContent, CarouselItem, CarouselNext, CarouselPrevious } from "@/components/ui/carousel";
-import { Wrench, Hammer, Paintbrush, Zap, Drill, Shield, Camera, Settings, Phone, Mail, ChevronDown, Droplets, Cog, DoorOpen, TreePine, Monitor, ShieldCheck, Sparkles, SunSnow, Radio, Type, Brush, Play } from "lucide-react";
+import { Wrench, Hammer, Paintbrush, Zap, Drill, Shield, Camera, Settings, Phone, Mail, ChevronDown, Droplets, Cog, DoorOpen, TreePine, Monitor, ShieldCheck, Sparkles, SunSnow, Radio, Type, Brush, Play, Pause } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { useImagePreloader } from "@/hooks/useImagePreloader";
 import { useScrollReveal } from "@/hooks/useScrollReveal";
@@ -11,11 +11,13 @@ import Autoplay from "embla-carousel-autoplay";
 import { motion, AnimatePresence } from "framer-motion";
 import { cn } from "@/lib/utils";
 import { OptimizedImage } from './OptimizedImage';
+
 interface ServiceItem {
   name: string;
   type: string;
   src?: string;
 }
+
 interface GuildCard {
   id: string;
   title: string;
@@ -25,6 +27,7 @@ interface GuildCard {
   borderColor: string;
   services: ServiceItem[];
 }
+
 interface CardData {
   id: number;
   name: string;
@@ -36,6 +39,7 @@ interface CardData {
   category: string;
   status: string;
 }
+
 const GremiosSection = () => {
   const {
     elementRef,
@@ -148,6 +152,7 @@ const GremiosSection = () => {
       src: "/lovable-uploads/83d351f7-8a06-4084-883d-f784b917168d.png"
     }]
   }];
+
   const allImageUrls = useMemo(() => {
     const urls: string[] = [];
     guildsData.forEach(guild => {
@@ -158,6 +163,7 @@ const GremiosSection = () => {
     });
     return urls;
   }, []);
+
   const {
     imagesLoaded,
     loadedImages,
@@ -165,6 +171,7 @@ const GremiosSection = () => {
   } = useImagePreloader(allImageUrls, {
     priority: 'high'
   });
+
   const herramientas: CardData[] = [{
     id: 1,
     name: "Video Presentación Corporativa",
@@ -216,11 +223,57 @@ const GremiosSection = () => {
     category: "Tecnología",
     status: "Premium"
   }];
+
   const [expandedCard, setExpandedCard] = useState<number>(1);
   const [currentImageIndex, setCurrentImageIndex] = useState(0);
+  const [isVideoPlaying, setIsVideoPlaying] = useState(false);
+  const [videoError, setVideoError] = useState(false);
+  const videoRef = useRef<HTMLVideoElement>(null);
+
   const handleCardClick = (cardId: number) => {
     setExpandedCard(cardId);
+    setCurrentImageIndex(0);
+    // Pause video when switching cards
+    if (videoRef.current && !videoRef.current.paused) {
+      videoRef.current.pause();
+      setIsVideoPlaying(false);
+    }
   };
+
+  const handleVideoPlay = async () => {
+    if (!videoRef.current) return;
+
+    try {
+      if (isVideoPlaying) {
+        videoRef.current.pause();
+        setIsVideoPlaying(false);
+      } else {
+        // Reset video if ended
+        if (videoRef.current.ended) {
+          videoRef.current.currentTime = 0;
+        }
+        
+        await videoRef.current.play();
+        setIsVideoPlaying(true);
+        setVideoError(false);
+      }
+    } catch (error) {
+      console.error('Error playing video:', error);
+      setVideoError(true);
+      setIsVideoPlaying(false);
+    }
+  };
+
+  const handleVideoEnded = () => {
+    setIsVideoPlaying(false);
+  };
+
+  const handleVideoError = () => {
+    console.error('Video failed to load');
+    setVideoError(true);
+    setIsVideoPlaying(false);
+  };
+
   const handleNextImage = () => {
     const currentCard = herramientas.find(card => card.id === expandedCard);
     if (currentCard) {
@@ -228,6 +281,7 @@ const GremiosSection = () => {
       setCurrentImageIndex(prev => (prev + 1) % allImages.length);
     }
   };
+
   const handlePrevImage = () => {
     const currentCard = herramientas.find(card => card.id === expandedCard);
     if (currentCard) {
@@ -235,6 +289,7 @@ const GremiosSection = () => {
       setCurrentImageIndex(prev => (prev - 1 + allImages.length) % allImages.length);
     }
   };
+
   const ToolCard = ({
     card,
     isExpanded,
@@ -247,6 +302,7 @@ const GremiosSection = () => {
     if (!card) return null;
     const allImages = [card.image, ...card.additionalImages];
     const allDescriptions = card.id === 4 ? ["Endoscopio para introducción en tuberías de poco diámetro", "Videocámara de hasta 20 metros", "Videocámara de hasta 50 metros", "Cámara térmica para localizaciones de fuga"] : card.id === 2 ? ["Detector de fuga ultrasonido", "Detector de fuga gas traza"] : card.id === 5 ? ["Decapador para soldaduras especiales", "Electrosoldador"] : [card.description, ...card.imageDescriptions];
+    
     return <motion.div layout className={cn("relative bg-card border border-border rounded-xl overflow-hidden shadow-lg hover:shadow-xl transition-all duration-300 cursor-pointer", isExpanded ? "flex-grow min-w-[90vw] sm:min-w-[700px] h-[350px] sm:h-[450px] md:h-[600px]" : "flex-shrink-0 w-[70vw] sm:w-80 h-64 sm:h-96")} onClick={onClick} whileHover={{
       scale: isExpanded ? 1 : 1.02
     }} transition={{
@@ -294,11 +350,16 @@ const GremiosSection = () => {
               }} className="mb-3 sm:mb-6 text-xs sm:text-sm leading-relaxed sm:leading-loose">
                     {card.id === 1 ? <>
                         <h4 className="font-semibold text-sm sm:text-base mb-2">
-                          {currentImageIndex === 0 ? "Video Presentación Corporativa" : ""}
+                          Video Presentación Corporativa
                         </h4>
                         <p className="text-gray-600 text-xs sm:text-sm">
-                          {card.imageDescriptions[currentImageIndex]}
+                          Descubre las capacidades y experiencia de Reymasur 13 a través de nuestro video corporativo. Conoce nuestras herramientas especializadas, metodologías de trabajo y el equipo profesional que garantiza la máxima calidad en cada proyecto.
                         </p>
+                        {videoError && (
+                          <p className="text-red-500 text-xs mt-2">
+                            Error al cargar el video. Por favor, inténtalo de nuevo.
+                          </p>
+                        )}
                       </> : card.id === 2 ? <>
                         <h4 className="font-semibold text-sm sm:text-base mb-2">
                           {allDescriptions[currentImageIndex]}
@@ -338,11 +399,65 @@ const GremiosSection = () => {
               opacity: 0,
               width: 0
             }} className="flex items-center justify-center relative h-40 sm:h-full mt-2 sm:mt-0">
-                  {card.id === 1 ? <video src="https://raw.githubusercontent.com/JavierGarciaCubiles/reymasurfin-42/main/video%20presentacion.mp4" controls autoPlay loop className="w-full h-full rounded-xl object-cover" preload="metadata">
-                      Tu navegador no soporta el elemento de video.
-                    </video> : <div className="rounded-xl overflow-hidden relative w-full h-full max-h-[160px] sm:max-h-[450px] shadow-lg">
+                  {card.id === 1 ? (
+                    <div className="rounded-xl overflow-hidden relative w-full h-full max-h-[160px] sm:max-h-[450px] shadow-lg bg-black">
+                      <video 
+                        ref={videoRef}
+                        src="https://raw.githubusercontent.com/JavierGarciaCubiles/reymasurfin-42/main/video%20presentacion.mp4" 
+                        className="w-full h-full object-cover"
+                        preload="metadata"
+                        playsInline
+                        onEnded={handleVideoEnded}
+                        onError={handleVideoError}
+                        onClick={(e) => e.stopPropagation()}
+                      />
+                      
+                      {/* Botón de play/pause grande */}
+                      {!videoError && (
+                        <button
+                          onClick={(e) => {
+                            e.stopPropagation();
+                            handleVideoPlay();
+                          }}
+                          className="absolute inset-0 flex items-center justify-center bg-black/30 hover:bg-black/50 transition-all duration-300 group"
+                        >
+                          <div className="bg-white/90 hover:bg-white rounded-full p-4 sm:p-6 transition-all duration-300 shadow-lg group-hover:scale-110">
+                            {isVideoPlaying ? (
+                              <Pause className="w-6 h-6 sm:w-8 sm:h-8 text-black" />
+                            ) : (
+                              <Play className="w-6 h-6 sm:w-8 sm:h-8 text-black ml-1" />
+                            )}
+                          </div>
+                        </button>
+                      )}
+
+                      {/* Mensaje de error */}
+                      {videoError && (
+                        <div className="absolute inset-0 flex items-center justify-center bg-gray-800/80">
+                          <div className="text-center text-white p-4">
+                            <div className="text-2xl mb-2">⚠️</div>
+                            <p className="text-sm">Error al cargar el video</p>
+                            <button 
+                              onClick={(e) => {
+                                e.stopPropagation();
+                                setVideoError(false);
+                                if (videoRef.current) {
+                                  videoRef.current.load();
+                                }
+                              }}
+                              className="mt-2 px-3 py-1 bg-blue-600 hover:bg-blue-700 rounded text-xs transition-colors"
+                            >
+                              Reintentar
+                            </button>
+                          </div>
+                        </div>
+                      )}
+                    </div>
+                  ) : (
+                    <div className="rounded-xl overflow-hidden relative w-full h-full max-h-[160px] sm:max-h-[450px] shadow-lg">
                       <OptimizedImage src={allImages[currentImageIndex]} alt={card.name} className="w-full h-full object-cover transition-all duration-300 hover:scale-105 cursor-pointer rounded-xl" priority={isExpanded ? 'high' : 'normal'} lazy={!isExpanded} />
-                    </div>}
+                    </div>
+                  )}
                   
                   {allImages.length > 1 && card.id !== 1 && <>
                       <button onClick={e => {
@@ -364,6 +479,7 @@ const GremiosSection = () => {
         </div>
       </motion.div>;
   };
+
   return <section ref={elementRef} id="gremios" className={`py-8 md:py-16 bg-transparent relative overflow-hidden ${isVisible ? animationClasses.visible : animationClasses.hidden}`}>
       <div className="absolute top-0 left-0 w-full h-full opacity-30">
         <div className="absolute top-16 left-8 w-24 h-24 rounded-full animate-pulse" style={{
@@ -518,4 +634,5 @@ const GremiosSection = () => {
       </div>
     </section>;
 };
+
 export default GremiosSection;
