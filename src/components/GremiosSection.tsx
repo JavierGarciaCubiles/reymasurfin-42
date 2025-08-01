@@ -226,87 +226,11 @@ const GremiosSection = () => {
 
   const [expandedCard, setExpandedCard] = useState<number>(1);
   const [currentImageIndex, setCurrentImageIndex] = useState(0);
-  const [isVideoPlaying, setIsVideoPlaying] = useState(false);
-  const [videoError, setVideoError] = useState(false);
-  const [videoLoading, setVideoLoading] = useState(true);
   const videoRef = useRef<HTMLVideoElement>(null);
 
   const handleCardClick = (cardId: number) => {
     setExpandedCard(cardId);
     setCurrentImageIndex(0);
-    // Pause video when switching cards
-    if (videoRef.current && !videoRef.current.paused) {
-      videoRef.current.pause();
-      setIsVideoPlaying(false);
-    }
-  };
-
-  const handleVideoPlay = async (e: React.MouseEvent) => {
-    e.stopPropagation();
-    
-    if (!videoRef.current) {
-      console.error('Video ref not available');
-      return;
-    }
-
-    const video = videoRef.current;
-    
-    try {
-      if (isVideoPlaying) {
-        video.pause();
-        setIsVideoPlaying(false);
-        console.log('Video pausado');
-      } else {
-        // Reset video if ended
-        if (video.ended) {
-          video.currentTime = 0;
-        }
-        
-        setVideoLoading(true);
-        await video.play();
-        setIsVideoPlaying(true);
-        setVideoError(false);
-        setVideoLoading(false);
-        console.log('Video iniciado');
-      }
-    } catch (error) {
-      console.error('Error al reproducir video:', error);
-      setVideoError(true);
-      setIsVideoPlaying(false);
-      setVideoLoading(false);
-    }
-  };
-
-  const handleVideoLoadedData = () => {
-    console.log('Video cargado correctamente');
-    setVideoLoading(false);
-    setVideoError(false);
-  };
-
-  const handleVideoCanPlay = () => {
-    console.log('Video listo para reproducir');
-    setVideoLoading(false);
-  };
-
-  const handleVideoEnded = () => {
-    setIsVideoPlaying(false);
-    console.log('Video terminado');
-  };
-
-  const handleVideoError = (e: any) => {
-    console.error('Error en el video:', e);
-    setVideoError(true);
-    setIsVideoPlaying(false);
-    setVideoLoading(false);
-  };
-
-  const handleVideoRetry = (e: React.MouseEvent) => {
-    e.stopPropagation();
-    setVideoError(false);
-    setVideoLoading(true);
-    if (videoRef.current) {
-      videoRef.current.load();
-    }
   };
 
   const handleNextImage = () => {
@@ -390,11 +314,6 @@ const GremiosSection = () => {
                         <p className="text-gray-600 text-xs sm:text-sm">
                           Descubre las capacidades y experiencia de Reymasur 13 a través de nuestro video corporativo. Conoce nuestras herramientas especializadas, metodologías de trabajo y el equipo profesional que garantiza la máxima calidad en cada proyecto.
                         </p>
-                        {videoError && (
-                          <p className="text-red-500 text-xs mt-2">
-                            Error al cargar el video. Por favor, inténtalo de nuevo.
-                          </p>
-                        )}
                       </> : card.id === 2 ? <>
                         <h4 className="font-semibold text-sm sm:text-base mb-2">
                           {allDescriptions[currentImageIndex]}
@@ -435,51 +354,16 @@ const GremiosSection = () => {
               width: 0
             }} className="flex items-center justify-center relative h-40 sm:h-full mt-2 sm:mt-0">
                   {card.id === 1 ? (
-                    <div className="rounded-xl overflow-hidden relative w-full h-full max-h-[160px] sm:max-h-[450px] shadow-lg bg-black">
+                    <div className="rounded-xl overflow-hidden relative w-full h-full max-h-[160px] sm:max-h-[450px] shadow-lg">
                       <video 
                         ref={videoRef}
                         src="https://raw.githubusercontent.com/JavierGarciaCubiles/reymasurfin-42/main/video%20presentacion.mp4" 
-                        className="w-full h-full object-cover"
+                        className="w-full h-full object-cover rounded-xl"
+                        controls
                         preload="metadata"
                         playsInline
-                        muted
-                        onLoadedData={handleVideoLoadedData}
-                        onCanPlay={handleVideoCanPlay}
-                        onEnded={handleVideoEnded}
-                        onError={handleVideoError}
                         onClick={(e) => e.stopPropagation()}
                       />
-                      
-                      {/* Overlay para el botón de play/pause */}
-                      <div className="absolute inset-0 flex items-center justify-center">
-                        {videoError ? (
-                          <div className="text-center text-white p-4 bg-black/70 rounded-lg">
-                            <div className="text-3xl mb-3">⚠️</div>
-                            <p className="text-sm mb-3">Error al cargar el video</p>
-                            <button 
-                              onClick={handleVideoRetry}
-                              className="px-4 py-2 bg-blue-600 hover:bg-blue-700 rounded text-sm transition-colors"
-                            >
-                              Reintentar
-                            </button>
-                          </div>
-                        ) : videoLoading ? (
-                          <div className="bg-black/70 rounded-full p-6">
-                            <div className="animate-spin rounded-full h-8 w-8 border-b-2 border-white"></div>
-                          </div>
-                        ) : (
-                          <button
-                            onClick={handleVideoPlay}
-                            className="bg-black/50 hover:bg-black/70 rounded-full p-6 sm:p-8 transition-all duration-300 group hover:scale-110 active:scale-95"
-                          >
-                            {isVideoPlaying ? (
-                              <Pause className="w-8 h-8 sm:w-12 sm:h-12 text-white" />
-                            ) : (
-                              <Play className="w-8 h-8 sm:w-12 sm:h-12 text-white ml-1" />
-                            )}
-                          </button>
-                        )}
-                      </div>
                     </div>
                   ) : (
                     <div className="rounded-xl overflow-hidden relative w-full h-full max-h-[160px] sm:max-h-[450px] shadow-lg">
