@@ -303,4 +303,163 @@ All colors MUST be HSL.
       background-position: 100% 50%;
     }
   }
+
+  /* Optimizaciones específicas para móvil */
+  @media (max-width: 767px) {
+    /* Mejora de performance en móvil */
+    .animate-float,
+    .animate-pulse,
+    .animate-bounce {
+      animation-duration: 4s;
+      animation-timing-function: ease-in-out;
+    }
+    
+    /* Reducir intensidad de blur en móvil */
+    .blur-3xl {
+      filter: blur(40px);
+    }
+    
+    .blur-2xl {
+      filter: blur(25px);
+    }
+    
+    .blur-xl {
+      filter: blur(15px);
+    }
+    
+    /* Optimización de gradientes en móvil */
+    .animate-gradient,
+    .animate-gradient-flow {
+      animation-duration: 6s;
+    }
+    
+    /* Mejora de transiciones en móvil */
+    .transition-all,
+    .transition-transform,
+    .transition-colors {
+      transition-duration: 200ms;
+    }
+    
+    /* Optimización de hover en móvil (desactivar) */
+    @media (hover: none) {
+      .hover\:scale-105:hover {
+        transform: none;
+      }
+      
+      .hover\:shadow-xl:hover {
+        box-shadow: none;
+      }
+      
+      .group:hover .group-hover\:scale-105 {
+        transform: none;
+      }
+    }
+    
+    /* Mejora de spacing para móvil */
+    .space-y-8 > * + * {
+      margin-top: 2rem;
+    }
+    
+    .space-y-12 > * + * {
+      margin-top: 3rem;
+    }
+    
+    .space-y-16 > * + * {
+      margin-top: 4rem;
+    }
+    
+    /* Optimización de padding y margin */
+    .py-16 {
+      padding-top: 3rem;
+      padding-bottom: 3rem;
+    }
+    
+    .py-20 {
+      padding-top: 4rem;
+      padding-bottom: 4rem;
+    }
+    
+    .py-24 {
+      padding-top: 5rem;
+      padding-bottom: 5rem;
+    }
+  }
+  
+  /* Optimizaciones para pantallas muy pequeñas */
+  @media (max-width: 375px) {
+    .py-16 {
+      padding-top: 2rem;
+      padding-bottom: 2rem;
+    }
+    
+    .py-20 {
+      padding-top: 2.5rem;
+      padding-bottom: 2.5rem;
+    }
+    
+    .space-y-8 > * + * {
+      margin-top: 1.5rem;
+    }
+    
+    .space-y-12 > * + * {
+      margin-top: 2rem;
+    }
+  }
+}
+
+/* Media queries específicas para optimización móvil */
+@media (max-width: 767px) {
+  /* Prevenir zoom en inputs */
+  input[type="text"],
+  input[type="email"],
+  input[type="tel"],
+  input[type="password"],
+  textarea,
+  select {
+    font-size: 16px !important;
+  }
+  
+  /* Optimización de performance para dispositivos de baja potencia */
+  * {
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+  
+  /* Mejora de accesibilidad táctil */
+  button,
+  [role="button"],
+  input[type="button"],
+  input[type="submit"] {
+    min-height: 44px;
+    min-width: 44px;
+  }
+  
+  /* Optimización de imágenes */
+  img {
+    will-change: auto;
+    contain: layout style paint;
+  }
+  
+  /* Mejora del scroll */
+  body {
+    -webkit-overflow-scrolling: touch;
+    overscroll-behavior-y: contain;
+  }
+}
+
+/* Optimizaciones para conexiones lentas */
+@media (prefers-reduced-data) {
+  .animate-float,
+  .animate-pulse,
+  .animate-bounce,
+  .animate-gradient,
+  .animate-gradient-flow {
+    animation: none;
+  }
+  
+  .blur-3xl,
+  .blur-2xl,
+  .blur-xl {
+    filter: none;
+  }
 }
