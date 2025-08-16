@@ -182,20 +182,20 @@ const HeroSection = ({ onOpenAssistant }: HeroSectionProps) => {
         
         {/* Visual Elements */}
         <div className="grid grid-cols-1 md:grid-cols-3 gap-8 max-w-4xl mx-auto">
-          <div className="bg-white/80 backdrop-blur-sm rounded-2xl p-6 shadow-xl hover:shadow-2xl transition-all duration-300 transform hover:scale-105 hover:-translate-y-2 border-l-4 border-palette-blue">
-            <Building2 className="h-12 w-12 text-palette-blue mx-auto mb-4" />
-            <h3 className="font-semibold text-palette-blue mb-2 font-montserrat">Gestión de Siniestros</h3>
-            <p className="text-sm text-gray-600 font-montserrat">Expertos en atención a Compañías de Seguros.</p>
+          <div className="bg-white/80 backdrop-blur-sm rounded-2xl p-3 sm:p-4 md:p-6 shadow-xl hover:shadow-2xl transition-all duration-300 transform hover:scale-105 hover:-translate-y-2 border-l-4 border-palette-blue">
+            <Building2 className="h-8 w-8 sm:h-10 sm:w-10 md:h-12 md:w-12 text-palette-blue mx-auto mb-2 sm:mb-3 md:mb-4" />
+            <h3 className="font-semibold text-palette-blue mb-1 sm:mb-2 md:mb-2 font-montserrat text-sm sm:text-base md:text-base">Gestión de Siniestros</h3>
+            <p className="text-xs sm:text-sm md:text-sm text-gray-600 font-montserrat">Expertos en atención a Compañías de Seguros.</p>
           </div>
-          <div className="bg-white/80 backdrop-blur-sm rounded-2xl p-6 shadow-xl hover:shadow-2xl transition-all duration-300 transform hover:scale-105 hover:-translate-y-2 border-l-4 border-palette-green">
-            <Home className="h-12 w-12 text-palette-green mx-auto mb-4" />
-            <h3 className="font-semibold text-palette-green mb-2 font-montserrat">Reformas Integrales</h3>
-            <p className="text-sm text-gray-600 font-montserrat">Soluciones a medida para hogares y negocios.</p>
+          <div className="bg-white/80 backdrop-blur-sm rounded-2xl p-3 sm:p-4 md:p-6 shadow-xl hover:shadow-2xl transition-all duration-300 transform hover:scale-105 hover:-translate-y-2 border-l-4 border-palette-green">
+            <Home className="h-8 w-8 sm:h-10 sm:w-10 md:h-12 md:w-12 text-palette-green mx-auto mb-2 sm:mb-3 md:mb-4" />
+            <h3 className="font-semibold text-palette-green mb-1 sm:mb-2 md:mb-2 font-montserrat text-sm sm:text-base md:text-base">Reformas Integrales</h3>
+            <p className="text-xs sm:text-sm md:text-sm text-gray-600 font-montserrat">Soluciones a medida para hogares y negocios.</p>
           </div>
-          <div className="bg-white/80 backdrop-blur-sm rounded-2xl p-6 shadow-xl hover:shadow-2xl transition-all duration-300 transform hover:scale-105 hover:-translate-y-2 border-l-4 border-palette-yellow">
-            <Hammer className="h-12 w-12 text-palette-yellow mx-auto mb-4" />
-            <h3 className="font-semibold text-palette-yellow mb-2 font-montserrat">Profesionales Verificados</h3>
-            <p className="text-sm text-gray-600 font-montserrat">Solo trabajamos con expertos</p>
+          <div className="bg-white/80 backdrop-blur-sm rounded-2xl p-3 sm:p-4 md:p-6 shadow-xl hover:shadow-2xl transition-all duration-300 transform hover:scale-105 hover:-translate-y-2 border-l-4 border-palette-yellow">
+            <Hammer className="h-8 w-8 sm:h-10 sm:w-10 md:h-12 md:w-12 text-palette-yellow mx-auto mb-2 sm:mb-3 md:mb-4" />
+            <h3 className="font-semibold text-palette-yellow mb-1 sm:mb-2 md:mb-2 font-montserrat text-sm sm:text-base md:text-base">Profesionales Verificados</h3>
+            <p className="text-xs sm:text-sm md:text-sm text-gray-600 font-montserrat">Solo trabajamos con expertos</p>
           </div>
         </div>
       </HeroGeometric>
