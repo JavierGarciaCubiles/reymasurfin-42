@@ -1,7 +1,6 @@
 import { CheckCircle, Users, Award, Clock, Shield, Zap, Droplets, HardHat } from "lucide-react";
 import { useScrollReveal } from "@/hooks/useScrollReveal";
 import { useEffect } from "react";
-
 const benefits = [{
   iconImage: "/lovable-uploads/20f070b2-160e-4ec2-a517-ff74b9de5171.png",
   title: "Calidad Garantizada",
@@ -19,7 +18,6 @@ const benefits = [{
   title: "Seguros y Garantías",
   description: "Cobertura completa con seguros de responsabilidad civil. Garantía extendida en todos nuestros trabajos y materiales utilizados."
 }];
-
 const BenefitsSection = () => {
   const {
     elementRef,
@@ -104,14 +102,14 @@ const BenefitsSection = () => {
         </div>
         
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
-          {benefits.map((benefit, index) => <div key={index} className="group text-center p-4 sm:p-6 md:p-8 rounded-2xl hover:shadow-2xl transition-all duration-300 bg-gradient-to-b from-white to-reymasur-green-50/30 border border-reymasur-green-100 hover:border-reymasur-green-300 transform hover:scale-105 hover:-translate-y-2">
-              <div className="w-16 h-16 sm:w-18 sm:h-18 md:w-20 md:h-20 mx-auto mb-4 sm:mb-5 md:mb-6 flex items-center justify-center">
-                <img src={benefit.iconImage} alt={benefit.title} className="h-12 w-12 sm:h-14 sm:w-14 md:h-16 md:w-16" />
+          {benefits.map((benefit, index) => <div key={index} className="group text-center p-8 rounded-2xl hover:shadow-2xl transition-all duration-300 bg-gradient-to-b from-white to-reymasur-green-50/30 border border-reymasur-green-100 hover:border-reymasur-green-300 transform hover:scale-105 hover:-translate-y-2">
+              <div className="w-20 h-20 mx-auto mb-6 flex items-center justify-center">
+                <img src={benefit.iconImage} alt={benefit.title} className="h-16 w-16" />
               </div>
-              <h3 className="text-lg sm:text-xl font-bold text-reymasur-green-800 mb-3 sm:mb-4 font-montserrat">
+              <h3 className="text-xl font-bold text-reymasur-green-800 mb-4 font-montserrat">
                 {benefit.title}
               </h3>
-              <p className="text-sm sm:text-base text-gray-600 leading-relaxed font-montserrat">
+              <p className="text-gray-600 leading-relaxed font-montserrat">
                 {benefit.description}
               </p>
             </div>)}
@@ -119,5 +117,4 @@ const BenefitsSection = () => {
       </div>
     </section>;
 };
-
 export default BenefitsSection;
