@@ -174,7 +174,7 @@ const HeroSection = ({ onOpenAssistant }: HeroSectionProps) => {
         </div>
 
         {/* Indicador de scroll hacia abajo */}
-        <div className="flex justify-center mb-12">
+        <div className="flex justify-center mb-6">
           <div className="text-white/60">
             <ScrollDownIndicator />
           </div>
