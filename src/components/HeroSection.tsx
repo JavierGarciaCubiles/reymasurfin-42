@@ -15,91 +15,53 @@ const HeroSection = ({ onOpenAssistant }: HeroSectionProps) => {
   const audioRef = useRef<HTMLAudioElement>(null);
 
   useEffect(() => {
-    if (!audioRef.current) return;
+    // Solo cargar audio en dispositivos con buena conexión
+    if (navigator.connection && (navigator.connection as any).effectiveType === '4g') {
+      if (!audioRef.current) return;
 
-    const audio = audioRef.current;
-    audio.src = "https://www.soundhelix.com/examples/mp3/SoundHelix-Song-13.mp3";
-    audio.preload = "metadata";
-    audio.loop = true;
-    
-    const handleCanPlayThrough = () => {
-      setIsAudioReady(true);
-      console.log("Audio listo para reproducir");
-    };
-    
-    const handleLoadedData = () => {
-      console.log("Audio cargado correctamente");
-    };
-    
-    const handleError = (e: any) => {
-      console.log("Error cargando audio:", e);
-    };
+      const audio = audioRef.current;
+      audio.src = "https://www.soundhelix.com/examples/mp3/SoundHelix-Song-13.mp3";
+      audio.preload = "none"; // Cambio a "none" para mejor performance
+      audio.loop = true;
+      
+      const handleCanPlayThrough = () => {
+        setIsAudioReady(true);
+      };
 
-    audio.addEventListener('canplaythrough', handleCanPlayThrough);
-    audio.addEventListener('loadeddata', handleLoadedData);
-    audio.addEventListener('error', handleError);
-    
-    audio.load();
-
-    return () => {
-      audio.removeEventListener('canplaythrough', handleCanPlayThrough);
-      audio.removeEventListener('loadeddata', handleLoadedData);
-      audio.removeEventListener('error', handleError);
-    };
+      audio.addEventListener('canplaythrough', handleCanPlayThrough);
+      
+      return () => {
+        audio.removeEventListener('canplaythrough', handleCanPlayThrough);
+      };
+    }
   }, []);
 
   const toggleAudio = async () => {
-    if (!audioRef.current || !isAudioReady) {
-      console.log("Audio no está listo aún");
-      return;
-    }
+    if (!audioRef.current) return;
 
     const audio = audioRef.current;
     
     try {
       if (!isAudioEnabled) {
-        console.log("Intentando reproducir audio...");
-        
-        // Configuración inicial para iOS
-        audio.currentTime = 0;
-        audio.volume = 0.7; // Volumen directo para iOS
-        
-        const playPromise = audio.play();
-        
-        if (playPromise !== undefined) {
-          await playPromise;
-          console.log("Audio iniciado exitosamente");
-          setIsAudioEnabled(true);
+        // Cargar y reproducir solo cuando el usuario lo solicite
+        if (!isAudioReady) {
+          audio.load();
+          await new Promise(resolve => {
+            audio.addEventListener('canplaythrough', resolve, { once: true });
+          });
+          setIsAudioReady(true);
         }
-      } else {
-        console.log("Deteniendo audio...");
         
-        // Detener audio inmediatamente para iOS
+        audio.volume = 0.5;
+        await audio.play();
+        setIsAudioEnabled(true);
+      } else {
         audio.pause();
         audio.currentTime = 0;
         setIsAudioEnabled(false);
-        console.log("Audio detenido");
       }
     } catch (error) {
-      console.log("Error al manejar audio:", error);
-      
-      // Fallback para iOS - intento directo
-      if (!isAudioEnabled) {
-        try {
-          audio.volume = 0.5;
-          await audio.play();
-          setIsAudioEnabled(true);
-          console.log("Audio iniciado en segundo intento");
-        } catch (secondError) {
-          console.log("Error en segundo intento:", secondError);
-          alert("No se puede reproducir audio en este navegador.");
-        }
-      } else {
-        // Forzar parada en caso de error
-        audio.pause();
-        audio.currentTime = 0;
-        setIsAudioEnabled(false);
-      }
+      console.log("Audio no disponible en este dispositivo");
     }
   };
 
@@ -151,25 +113,17 @@ const HeroSection = ({ onOpenAssistant }: HeroSectionProps) => {
           </p>
         </div>
 
-        {/* Botón de audio optimizado para iOS */}
-        <div className="flex justify-center mb-8 space-x-4">
+        {/* Botón de audio simplificado */}
+        <div className="flex justify-center mb-6 space-x-4">
           <Button
             onClick={toggleAudio}
-            disabled={!isAudioReady}
-            className={`px-6 py-3 rounded-lg transition-all duration-300 font-montserrat text-sm ${
-              !isAudioReady 
-                ? "bg-gray-400 text-gray-200 cursor-not-allowed" 
-                : isAudioEnabled
-                ? "bg-red-500 hover:bg-red-600 text-white shadow-lg transform active:scale-95"
-                : "bg-reymasur-corporate-500 text-white hover:bg-reymasur-corporate-600 shadow-lg transform active:scale-95"
+            className={`px-4 py-2 rounded-lg transition-all duration-300 font-montserrat text-sm ${
+              isAudioEnabled
+                ? "bg-red-500 hover:bg-red-600 text-white"
+                : "bg-reymasur-corporate-500 text-white hover:bg-reymasur-corporate-600"
             }`}
           >
-            {!isAudioReady 
-              ? "Cargando Audio..." 
-              : isAudioEnabled 
-              ? "🔊 Parar Sonido" 
-              : "🔇 Activar Sonido"
-            }
+            {isAudioEnabled ? "🔊 Parar" : "🔇 Música"}
           </Button>
         </div>
 
@@ -180,22 +134,22 @@ const HeroSection = ({ onOpenAssistant }: HeroSectionProps) => {
           </div>
         </div>
         
-        {/* Visual Elements */}
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-8 max-w-4xl mx-auto">
-          <div className="bg-white/80 backdrop-blur-sm rounded-2xl p-6 shadow-xl hover:shadow-2xl transition-all duration-300 transform hover:scale-105 hover:-translate-y-2 border-l-4 border-palette-blue">
-            <Building2 className="h-12 w-12 text-palette-blue mx-auto mb-4" />
-            <h3 className="font-semibold text-palette-blue mb-2 font-montserrat">Gestión de Siniestros</h3>
-            <p className="text-sm text-gray-600 font-montserrat">Expertos en atención a Compañías de Seguros.</p>
+        {/* Visual Elements - optimizados para móvil */}
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-4 md:gap-8 max-w-4xl mx-auto">
+          <div className="bg-white/90 backdrop-blur-sm rounded-xl md:rounded-2xl p-4 md:p-6 shadow-lg hover:shadow-xl transition-all duration-300 transform hover:scale-105 hover:-translate-y-1 md:hover:-translate-y-2 border-l-4 border-palette-blue">
+            <Building2 className="h-8 w-8 md:h-12 md:w-12 text-palette-blue mx-auto mb-3 md:mb-4" />
+            <h3 className="font-semibold text-palette-blue mb-2 font-montserrat text-sm md:text-base">Gestión de Siniestros</h3>
+            <p className="text-xs md:text-sm text-gray-600 font-montserrat">Expertos en atención a Compañías de Seguros.</p>
           </div>
-          <div className="bg-white/80 backdrop-blur-sm rounded-2xl p-6 shadow-xl hover:shadow-2xl transition-all duration-300 transform hover:scale-105 hover:-translate-y-2 border-l-4 border-palette-green">
-            <Home className="h-12 w-12 text-palette-green mx-auto mb-4" />
-            <h3 className="font-semibold text-palette-green mb-2 font-montserrat">Reformas Integrales</h3>
-            <p className="text-sm text-gray-600 font-montserrat">Soluciones a medida para hogares y negocios.</p>
+          <div className="bg-white/90 backdrop-blur-sm rounded-xl md:rounded-2xl p-4 md:p-6 shadow-lg hover:shadow-xl transition-all duration-300 transform hover:scale-105 hover:-translate-y-1 md:hover:-translate-y-2 border-l-4 border-palette-green">
+            <Home className="h-8 w-8 md:h-12 md:w-12 text-palette-green mx-auto mb-3 md:mb-4" />
+            <h3 className="font-semibold text-palette-green mb-2 font-montserrat text-sm md:text-base">Reformas Integrales</h3>
+            <p className="text-xs md:text-sm text-gray-600 font-montserrat">Soluciones a medida para hogares y negocios.</p>
           </div>
-          <div className="bg-white/80 backdrop-blur-sm rounded-2xl p-6 shadow-xl hover:shadow-2xl transition-all duration-300 transform hover:scale-105 hover:-translate-y-2 border-l-4 border-palette-yellow">
-            <Hammer className="h-12 w-12 text-palette-yellow mx-auto mb-4" />
-            <h3 className="font-semibold text-palette-yellow mb-2 font-montserrat">Profesionales Verificados</h3>
-            <p className="text-sm text-gray-600 font-montserrat">Solo trabajamos con expertos</p>
+          <div className="bg-white/90 backdrop-blur-sm rounded-xl md:rounded-2xl p-4 md:p-6 shadow-lg hover:shadow-xl transition-all duration-300 transform hover:scale-105 hover:-translate-y-1 md:hover:-translate-y-2 border-l-4 border-palette-yellow">
+            <Hammer className="h-8 w-8 md:h-12 md:w-12 text-palette-yellow mx-auto mb-3 md:mb-4" />
+            <h3 className="font-semibold text-palette-yellow mb-2 font-montserrat text-sm md:text-base">Profesionales Verificados</h3>
+            <p className="text-xs md:text-sm text-gray-600 font-montserrat">Solo trabajamos con expertos</p>
           </div>
         </div>
       </HeroGeometric>
