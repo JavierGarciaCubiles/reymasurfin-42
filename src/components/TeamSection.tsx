@@ -45,10 +45,6 @@ const officeImages = [{
   description: "Espacio de trabajo con tecnología moderna y diseño funcional",
   imageUrl: "/lovable-uploads/de0edba0-cb43-4a3e-a744-78e63525bc54.png"
 }, {
-  title: "Área de Desarrollo",
-  description: "Zona de trabajo colaborativo con equipos especializados",
-  imageUrl: "/lovable-uploads/42741c7e-c311-4531-a087-0f9f4c96cdf0.png"
-}, {
   title: "Centro de Impresión y Documentación",
   description: "Área equipada para gestión documental y proyectos técnicos",
   imageUrl: "/lovable-uploads/6a659218-43f6-4445-8129-ec6b3651a980.png"
