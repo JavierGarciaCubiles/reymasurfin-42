@@ -26,17 +26,17 @@ const officeImages = [{
   description: "Nuestras modernas instalaciones corporativas en el Edificio Omega",
   imageUrl: "/lovable-uploads/78f0c724-5561-4f2d-95e7-e2d989ddd82e.png"
 }, {
-  title: "Edificio Omega - Vista Lateral",
-  description: "Arquitectura moderna que refleja nuestra innovación y profesionalismo",
-  imageUrl: "/lovable-uploads/e964e4c5-792b-4a55-8910-ef0232c6adf0.png"
+  title: "Placa Corporativa",
+  description: "Identificación oficial de Reymasur 13 en nuestras oficinas",
+  imageUrl: "/lovable-uploads/42a58fbb-0e02-4f60-a536-3c2b22cc4df0.png"
 }, {
-  title: "Área de Diseño",
-  description: "Espacio equipado con tecnología de última generación",
-  imageUrl: "/lovable-uploads/80a55735-bd96-4bf3-986d-6aa42e749f60.png"
+  title: "Área de Trabajo",
+  description: "Espacios modernos y funcionales para nuestro equipo",
+  imageUrl: "/lovable-uploads/380769e7-0782-49fc-8444-1a1f9a823b75.png"
 }, {
-  title: "Sala de Reuniones",
-  description: "Donde planificamos y coordinamos cada proyecto",
-  imageUrl: "/lovable-uploads/9a5927c8-e166-4013-ba13-a17c6eccb72c.png"
+  title: "Área de Archivo y Documentación",
+  description: "Organización y gestión profesional de proyectos",
+  imageUrl: "/lovable-uploads/14de5dce-3575-40b2-b2be-f4f0dbe22804.png"
 }];
 
 const TeamSection = () => {
