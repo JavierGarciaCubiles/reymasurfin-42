@@ -128,17 +128,24 @@ const TeamSection = () => {
                    border: '1px solid hsl(var(--palette-blue) / 0.1)'
                  }}>
               <div className="relative h-full">
-                <div className="relative h-64">
-                  <img 
-                    src={officeImages[currentImageIndex].imageUrl} 
-                    alt={officeImages[currentImageIndex].title}
-                    className="w-full h-full object-cover"
-                  />
+                <div className="relative h-64 overflow-hidden">
+                  {officeImages.map((image, index) => (
+                    <img 
+                      key={image.imageUrl}
+                      src={image.imageUrl} 
+                      alt={image.title}
+                      className={`absolute inset-0 w-full h-full object-cover transition-all duration-500 ease-in-out ${
+                        index === currentImageIndex 
+                          ? 'opacity-100 transform scale-100' 
+                          : 'opacity-0 transform scale-105'
+                      }`}
+                    />
+                  ))}
                   
                   {/* Navigation buttons */}
                   <button
                     onClick={prevImage}
-                    className="absolute left-4 top-1/2 -translate-y-1/2 p-2 rounded-full shadow-lg transition-all duration-300 hover:scale-110"
+                    className="absolute left-4 top-1/2 -translate-y-1/2 p-2 rounded-full shadow-lg transition-all duration-200 hover:scale-110 z-10"
                     style={{ backgroundColor: 'hsl(var(--palette-blue))' }}
                   >
                     <ChevronLeft className="w-5 h-5 text-white" />
@@ -146,20 +153,20 @@ const TeamSection = () => {
                   
                   <button
                     onClick={nextImage}
-                    className="absolute right-4 top-1/2 -translate-y-1/2 p-2 rounded-full shadow-lg transition-all duration-300 hover:scale-110"
+                    className="absolute right-4 top-1/2 -translate-y-1/2 p-2 rounded-full shadow-lg transition-all duration-200 hover:scale-110 z-10"
                     style={{ backgroundColor: 'hsl(var(--palette-blue))' }}
                   >
                     <ChevronRight className="w-5 h-5 text-white" />
                   </button>
                   
                   {/* Dots indicator */}
-                  <div className="absolute bottom-4 left-1/2 -translate-x-1/2 flex gap-2">
+                  <div className="absolute bottom-4 left-1/2 -translate-x-1/2 flex gap-2 z-10">
                     {officeImages.map((_, index) => (
                       <button
                         key={index}
                         onClick={() => setCurrentImageIndex(index)}
-                        className={`w-2 h-2 rounded-full transition-all duration-300 ${
-                          index === currentImageIndex ? 'w-6' : ''
+                        className={`h-2 rounded-full transition-all duration-300 ${
+                          index === currentImageIndex ? 'w-6' : 'w-2'
                         }`}
                         style={{ 
                           backgroundColor: index === currentImageIndex 
@@ -172,11 +179,11 @@ const TeamSection = () => {
                 </div>
                 
                 <div className="p-4">
-                  <h4 className="text-lg font-bold mb-2 font-montserrat"
+                  <h4 className="text-lg font-bold mb-2 font-montserrat transition-all duration-300"
                       style={{ color: 'hsl(var(--palette-blue))' }}>
                     {officeImages[currentImageIndex].title}
                   </h4>
-                  <p className="text-sm" style={{ color: 'hsl(var(--foreground) / 0.8)' }}>
+                  <p className="text-sm transition-all duration-300" style={{ color: 'hsl(var(--foreground) / 0.8)' }}>
                     {officeImages[currentImageIndex].description}
                   </p>
                 </div>
