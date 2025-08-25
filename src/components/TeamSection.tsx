@@ -37,6 +37,18 @@ const officeImages = [{
   title: "Área de Archivo y Documentación",
   description: "Organización y gestión profesional de proyectos",
   imageUrl: "/lovable-uploads/14de5dce-3575-40b2-b2be-f4f0dbe22804.png"
+}, {
+  title: "Oficina Principal",
+  description: "Espacio de trabajo con tecnología moderna y diseño funcional",
+  imageUrl: "/lovable-uploads/54c407a2-aa42-4397-aaf8-1cc1a270ee6a.png"
+}, {
+  title: "Área de Desarrollo",
+  description: "Zona de trabajo colaborativo con equipos especializados",
+  imageUrl: "/lovable-uploads/42741c7e-c311-4531-a087-0f9f4c96cdf0.png"
+}, {
+  title: "Centro de Impresión y Documentación",
+  description: "Área equipada para gestión documental y proyectos técnicos",
+  imageUrl: "/lovable-uploads/6a659218-43f6-4445-8129-ec6b3651a980.png"
 }];
 
 const TeamSection = () => {
