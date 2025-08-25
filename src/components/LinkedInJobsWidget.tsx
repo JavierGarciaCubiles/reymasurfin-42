@@ -1,3 +1,4 @@
+
 import { useState } from "react";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
@@ -19,28 +20,28 @@ const LinkedInJobsWidget = () => {
       title: "Especialista en Fontanería",
       location: "Sevilla, España",
       type: "Tiempo completo",
-      description: "Buscamos fontanero especializado en instalaciones sanitarias, reparación de tuberías, sistemas de calefacción y trabajos de fontanería en reformas integrales."
+      description: "Buscamos fontanero con experiencia en el sector de seguros y tramitación de siniestros con aseguradoras."
     },
     {
       id: "2", 
       title: "Especialista en Albañilería",
       location: "Sevilla, España",
       type: "Tiempo completo",
-      description: "Profesional en trabajos de albañilería: construcción de tabiques, alicatados, solados, enfoscados y acabados en obra nueva y reformas."
+      description: "Profesional en albañilería con experiencia trabajando con compañías aseguradoras y peritaciones."
     },
     {
       id: "3",
       title: "Especialista en Carpintería Metálica",
       location: "Sevilla, España",
       type: "Tiempo parcial",
-      description: "Técnico especializado en fabricación e instalación de estructuras metálicas, ventanas de aluminio, puertas y elementos de carpintería metálica."
+      description: "Carpintero metálico con conocimientos en el mundo de los seguros y reparaciones por siniestros."
     },
     {
       id: "4",
       title: "Especialista en Electricidad",
       location: "Sevilla, España",
       type: "Tiempo parcial",
-      description: "Electricista para instalaciones eléctricas residenciales e industriales, cuadros eléctricos, iluminación y sistemas de automatización domótica."
+      description: "Electricista con experiencia en el sector asegurador y trabajos relacionados con siniestros."
     }
   ]);
 
