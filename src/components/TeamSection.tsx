@@ -3,6 +3,7 @@ import { useState } from "react";
 import GoogleMap from "./GoogleMap";
 import { useScrollReveal } from "@/hooks/useScrollReveal";
 import { AnimatedTestimonials } from "@/components/ui/animated-testimonials";
+
 const teamMembers = [{
   name: "Carlos Rodríguez",
   position: "Director Técnico",
@@ -19,6 +20,7 @@ const teamMembers = [{
   experience: "8 años de experiencia",
   imageUrl: "https://images.unsplash.com/photo-1438761681033-6461ffad8d80?w=400&h=400&fit=crop&crop=face"
 }];
+
 const officeImages = [{
   title: "Edificio Omega - Vista Principal",
   description: "Nuestras modernas instalaciones corporativas en el Edificio Omega",
@@ -36,6 +38,7 @@ const officeImages = [{
   description: "Donde planificamos y coordinamos cada proyecto",
   imageUrl: "/lovable-uploads/9a5927c8-e166-4013-ba13-a17c6eccb72c.png"
 }];
+
 const TeamSection = () => {
   const {
     elementRef,
@@ -51,18 +54,48 @@ const TeamSection = () => {
   };
   return <section ref={elementRef} className={`bg-transparent py-16 relative overflow-hidden ${isVisible ? animationClasses.visible : animationClasses.hidden}`} id="equipo">
       <div className="container mx-auto px-4 relative">
-        <div className="text-center mb-12">
-          <h2 className="text-4xl md:text-5xl font-bold mb-6 font-montserrat" style={{
-          color: 'hsl(var(--palette-green))'
-        }}>
-            Nuestro Equipo
+        <div className="text-center mb-16">
+          {/* Badge/Tag superior */}
+          <div className="inline-flex items-center gap-2 px-4 py-2 mb-6 rounded-full border" style={{
+            backgroundColor: 'hsl(var(--palette-green) / 0.1)',
+            borderColor: 'hsl(var(--palette-green) / 0.2)',
+            color: 'hsl(var(--palette-green))'
+          }}>
+            <Users className="w-4 h-4" />
+            <span className="text-sm font-semibold font-montserrat">NUESTRO EQUIPO</span>
+          </div>
+          
+          {/* Título principal rediseñado */}
+          <h2 className="text-5xl md:text-6xl lg:text-7xl font-bold mb-8 font-montserrat leading-tight">
+            <span className="block" style={{ color: 'hsl(var(--palette-green))' }}>
+              Profesionales
+            </span>
+            <span className="block text-3xl md:text-4xl lg:text-5xl font-normal mt-2" style={{ color: 'hsl(var(--foreground) / 0.7)' }}>
+              que hacen la diferencia
+            </span>
           </h2>
-          <p className="text-xl max-w-4xl mx-auto font-montserrat" style={{
-          color: 'hsl(var(--foreground) / 0.8)'
-        }}>
-            Conoce a los profesionales que hacen posible cada proyecto. 
-            <strong> Experiencia, dedicación y pasión</strong> en cada trabajo que realizamos.
-          </p>
+          
+          {/* Subtítulo rediseñado */}
+          <div className="max-w-5xl mx-auto">
+            <p className="text-xl md:text-2xl mb-4 font-montserrat leading-relaxed" style={{
+              color: 'hsl(var(--foreground) / 0.8)'
+            }}>
+              Conoce a los expertos que transforman cada proyecto en una 
+              <span className="font-semibold" style={{ color: 'hsl(var(--palette-blue))' }}> obra de arte</span>
+            </p>
+            <p className="text-lg font-montserrat" style={{
+              color: 'hsl(var(--foreground) / 0.6)'
+            }}>
+              <strong>Experiencia</strong> • <strong>Dedicación</strong> • <strong>Pasión</strong> en cada trabajo que realizamos
+            </p>
+          </div>
+          
+          {/* Línea decorativa */}
+          <div className="flex items-center justify-center mt-8 mb-4">
+            <div className="h-0.5 w-16 mr-4" style={{ backgroundColor: 'hsl(var(--palette-green))' }}></div>
+            <div className="w-3 h-3 rounded-full" style={{ backgroundColor: 'hsl(var(--palette-green))' }}></div>
+            <div className="h-0.5 w-16 ml-4" style={{ backgroundColor: 'hsl(var(--palette-green))' }}></div>
+          </div>
         </div>
 
         {/* Team Members */}
