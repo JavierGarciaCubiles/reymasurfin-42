@@ -160,7 +160,7 @@ const TeamSection = () => {
                   </button>
                   
                   {/* Dots indicator */}
-                  <div className="absolute bottom-16 left-1/2 -translate-x-1/2 flex gap-2 z-10">
+                  <div className="absolute bottom-20 left-1/2 -translate-x-1/2 flex gap-2 z-10">
                     {officeImages.map((_, index) => (
                       <button
                         key={index}
@@ -178,12 +178,12 @@ const TeamSection = () => {
                   </div>
                 </div>
                 
-                <div className="absolute bottom-0 left-0 right-0 bg-white/95 backdrop-blur-sm p-2">
-                  <h4 className="text-base font-bold mb-1 font-montserrat transition-all duration-300"
+                <div className="absolute bottom-0 left-0 right-0 bg-white/95 backdrop-blur-sm p-3 h-20">
+                  <h4 className="text-lg font-bold mb-1 font-montserrat transition-all duration-300"
                       style={{ color: 'hsl(var(--palette-blue))' }}>
                     {officeImages[currentImageIndex].title}
                   </h4>
-                  <p className="text-xs transition-all duration-300" style={{ color: 'hsl(var(--foreground) / 0.8)' }}>
+                  <p className="text-sm transition-all duration-300" style={{ color: 'hsl(var(--foreground) / 0.8)' }}>
                     {officeImages[currentImageIndex].description}
                   </p>
                 </div>
