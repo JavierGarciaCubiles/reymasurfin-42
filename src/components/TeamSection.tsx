@@ -128,7 +128,7 @@ const TeamSection = () => {
                    border: '1px solid hsl(var(--palette-blue) / 0.1)'
                  }}>
               <div className="relative h-full">
-                <div className="relative h-64 overflow-hidden">
+                <div className="relative h-80 overflow-hidden">
                   {officeImages.map((image, index) => (
                     <img 
                       key={image.imageUrl}
@@ -178,8 +178,8 @@ const TeamSection = () => {
                   </div>
                 </div>
                 
-                <div className="p-4">
-                  <h4 className="text-lg font-bold mb-2 font-montserrat transition-all duration-300"
+                <div className="absolute bottom-0 left-0 right-0 bg-white/95 backdrop-blur-sm p-3">
+                  <h4 className="text-lg font-bold mb-1 font-montserrat transition-all duration-300"
                       style={{ color: 'hsl(var(--palette-blue))' }}>
                     {officeImages[currentImageIndex].title}
                   </h4>
