@@ -193,9 +193,9 @@ const GremiosSection = () => {
     name: "Inspección con Drones",
     description: "Tecnología de drones para inspecciones detalladas y seguras de tejados, fachadas y estructuras de difícil acceso.",
     icon: Camera,
-    image: "https://images.unsplash.com/photo-1460925895917-afdab827c52f?auto=format&fit=crop&w=300&h=300",
-    additionalImages: ["https://images.unsplash.com/photo-1501854140801-50d01698950b?auto=format&fit=crop&w=300&h=300", "https://images.unsplash.com/photo-1555099962-4199c345e5dd?auto=format&fit=crop&w=300&h=300"],
-    imageDescriptions: ["Inspección aérea de tejados con drones equipados con cámaras de alta definición.", "Análisis de fachadas en alta resolución para detectar daños o imperfecciones."],
+    image: "/lovable-uploads/26ca3cf2-f333-47b2-96e2-818bdfbc43b4.png",
+    additionalImages: [],
+    imageDescriptions: [],
     category: "Tecnología",
     status: "Popular"
   }, {

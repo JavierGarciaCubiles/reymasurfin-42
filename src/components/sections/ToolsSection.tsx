@@ -46,6 +46,8 @@ const ToolCard = React.memo(({
     ? ["Detector de fuga ultrasonido", "Detector de fuga gas traza"]
     : card.id === 5 
     ? ["Decapador para soldaduras especiales", "Electrosoldador"]
+    : card.id === 3
+    ? ["Inspección profesional con drones para análisis detallado de estructuras"]
     : [card.description, ...card.imageDescriptions];
 
   return (
@@ -101,6 +103,8 @@ const ToolCard = React.memo(({
                 <p className="text-gray-600 text-xs sm:text-sm">
                   {card.id === 1 
                     ? "Descubre las capacidades y experiencia de Reymasur 13 a través de nuestro video corporativo."
+                    : card.id === 3
+                    ? "Utilizamos drones de última generación para realizar inspecciones seguras y detalladas de tejados, fachadas y estructuras industriales de difícil acceso."
                     : card.imageDescriptions[currentImageIndex]
                   }
                 </p>
@@ -138,7 +142,7 @@ const ToolCard = React.memo(({
                 </div>
               )}
               
-              {allImages.length > 1 && card.id !== 1 && (
+              {allImages.length > 1 && card.id !== 1 && card.id !== 3 && (
                 <>
                   <button 
                     onClick={(e) => { e.stopPropagation(); onPrevImage(); }} 
