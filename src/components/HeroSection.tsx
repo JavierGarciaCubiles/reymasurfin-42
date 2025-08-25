@@ -147,7 +147,7 @@ const HeroSection = ({ onOpenAssistant }: HeroSectionProps) => {
         {/* Credit text */}
         <div className="flex justify-center mb-4">
           <p className="text-sm text-gray-700 font-montserrat opacity-60">
-            Website made by Javier García Cubiles
+            Website creado por Javier García Cubiles
           </p>
         </div>
 
