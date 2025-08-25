@@ -224,7 +224,7 @@ const GremiosSection = () => {
     <section 
       ref={elementRef} 
       id="gremios" 
-      className={`py-8 md:py-16 pb-4 md:pb-8 bg-transparent relative overflow-hidden ${
+      className={`py-8 md:py-16 pb-2 md:pb-4 bg-transparent relative overflow-hidden ${
         isVisible ? animationClasses.visible : animationClasses.hidden
       }`}
     >
