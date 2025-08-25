@@ -1,4 +1,3 @@
-
 import { MapPin, Users, Building2, ChevronLeft, ChevronRight } from "lucide-react";
 import { useState, useMemo } from "react";
 import GoogleMap from "./GoogleMap";
@@ -95,147 +94,199 @@ const TeamSection = () => {
 
   const currentImage = officeImages[currentImageIndex];
 
-  return <section ref={elementRef} className={`bg-transparent py-16 relative overflow-hidden ${isVisible ? animationClasses.visible : animationClasses.hidden}`} id="equipo">
+  return (
+    <section 
+      ref={elementRef} 
+      className={`bg-transparent py-16 relative overflow-hidden ${isVisible ? animationClasses.visible : animationClasses.hidden}`} 
+      id="equipo"
+    >
       <div className="container mx-auto px-4 relative">
-        <div className="text-center mb-16">
-          <h2 className="text-4xl md:text-5xl font-bold mb-6 font-montserrat" style={{
-            color: 'hsl(var(--palette-blue))'
-          }}>
-            Nuestras Instalaciones y Ubicación
-          </h2>
-          
-          <p className="text-lg md:text-xl text-gray-600 max-w-3xl mx-auto leading-relaxed font-montserrat">
-            Visítanos en el <strong>Edificio Omega</strong> en Málaga. Descubre nuestras oficinas modernas 
-            y cómo llegar fácilmente a nuestras instalaciones.
-          </p>
-        </div>
-
-        {/* Indicador de carga optimizado */}
-        {!imagesLoaded && (
-          <div className="fixed top-0 left-0 w-full h-1 bg-gray-200 z-50">
-            <div 
-              className="h-full bg-gradient-to-r transition-all duration-300" 
-              style={{ 
-                width: `${loadingProgress}%`,
-                background: 'linear-gradient(90deg, hsl(var(--palette-blue)), hsl(var(--palette-green)))'
-              }} 
-            />
-          </div>
-        )}
-
-        {/* Office Images and Location */}
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 items-stretch max-w-6xl mx-auto">
-          {/* Office Images Carousel */}
-          <div className="flex flex-col h-full">
-            <div className="flex items-center justify-center gap-3 mb-6">
-              <div className="p-3 rounded-full" style={{
-              backgroundColor: 'hsl(var(--palette-blue) / 0.1)'
-            }}>
-                <Building2 className="w-8 h-8" style={{
+        {/* Mostrar todo el contenido solo cuando las imágenes críticas estén cargadas */}
+        {imagesLoaded ? (
+          <>
+            <div className="text-center mb-16">
+              <h2 className="text-4xl md:text-5xl font-bold mb-6 font-montserrat" style={{
                 color: 'hsl(var(--palette-blue))'
-              }} />
-              </div>
-              <h3 className="text-2xl font-bold font-montserrat" style={{
-              color: 'hsl(var(--palette-blue))'
-            }}>
-                Nuestras Instalaciones
-              </h3>
+              }}>
+                Nuestras Instalaciones y Ubicación
+              </h2>
+              
+              <p className="text-lg md:text-xl text-gray-600 max-w-3xl mx-auto leading-relaxed font-montserrat">
+                Visítanos en el <strong>Edificio Omega</strong> en Málaga. Descubre nuestras oficinas modernas 
+                y cómo llegar fácilmente a nuestras instalaciones.
+              </p>
             </div>
-            
-            <div className="flex-1 rounded-2xl overflow-hidden shadow-xl h-96" style={{
-            background: 'linear-gradient(145deg, hsl(var(--background)) 0%, hsl(var(--palette-blue) / 0.05) 100%)',
-            border: '1px solid hsl(var(--palette-blue) / 0.1)'
-          }}>
-              <div className="relative h-full">
-                <div className="relative h-80">
-                  {loadedImages.has(currentImage.imageUrl) ? (
-                    <OptimizedImage
-                      src={currentImage.imageUrl}
-                      alt={currentImage.title}
-                      className="w-full h-full object-cover"
-                      priority="high"
-                      lazy={false}
-                    />
-                  ) : (
-                    <Skeleton className="w-full h-full" />
-                  )}
-                  
-                  {/* Navigation buttons */}
-                  <button onClick={prevImage} className="absolute left-4 top-1/2 -translate-y-1/2 p-2 rounded-full shadow-lg transition-all duration-300 hover:scale-110" style={{
-                  backgroundColor: 'hsl(var(--palette-blue))'
-                }}>
-                    <ChevronLeft className="w-5 h-5 text-white" />
-                  </button>
-                  
-                  <button onClick={nextImage} className="absolute right-4 top-1/2 -translate-y-1/2 p-2 rounded-full shadow-lg transition-all duration-300 hover:scale-110" style={{
-                  backgroundColor: 'hsl(var(--palette-blue))'
-                }}>
-                    <ChevronRight className="w-5 h-5 text-white" />
-                  </button>
-                  
-                  {/* Dots indicator */}
-                  <div className="absolute bottom-4 left-1/2 -translate-x-1/2 flex gap-2">
-                    {officeImages.map((_, index) => (
-                      <button 
-                        key={index} 
-                        onClick={() => setCurrentImageIndex(index)} 
-                        className={`rounded-full transition-all duration-300 ${
-                          index === currentImageIndex ? 'w-6 h-2' : 'w-2 h-2'
-                        }`} 
-                        style={{
-                          backgroundColor: index === currentImageIndex 
-                            ? 'hsl(var(--palette-blue))' 
-                            : 'hsl(var(--palette-blue) / 0.3)'
-                        }} 
-                      />
-                    ))}
+
+            {/* Office Images and Location */}
+            <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 items-stretch max-w-6xl mx-auto">
+              {/* Office Images Carousel */}
+              <div className="flex flex-col h-full">
+                <div className="flex items-center justify-center gap-3 mb-6">
+                  <div className="p-3 rounded-full" style={{
+                    backgroundColor: 'hsl(var(--palette-blue) / 0.1)'
+                  }}>
+                    <Building2 className="w-8 h-8" style={{
+                      color: 'hsl(var(--palette-blue))'
+                    }} />
                   </div>
+                  <h3 className="text-2xl font-bold font-montserrat" style={{
+                    color: 'hsl(var(--palette-blue))'
+                  }}>
+                    Nuestras Instalaciones
+                  </h3>
                 </div>
                 
-                <div className="p-3 h-12">
-                  <h4 className="text-lg font-bold mb-1 font-montserrat truncate" style={{
-                  color: 'hsl(var(--palette-blue))'
+                <div className="flex-1 rounded-2xl overflow-hidden shadow-xl h-96" style={{
+                  background: 'linear-gradient(145deg, hsl(var(--background)) 0%, hsl(var(--palette-blue) / 0.05) 100%)',
+                  border: '1px solid hsl(var(--palette-blue) / 0.1)'
                 }}>
-                    {currentImage.title}
-                  </h4>
-                  <p className="text-xs truncate" style={{
-                  color: 'hsl(var(--foreground) / 0.8)'
+                  <div className="relative h-full">
+                    <div className="relative h-80">
+                      <OptimizedImage
+                        src={currentImage.imageUrl}
+                        alt={currentImage.title}
+                        className="w-full h-full object-cover"
+                        priority="high"
+                        lazy={false}
+                      />
+                      
+                      {/* Navigation buttons */}
+                      <button 
+                        onClick={prevImage} 
+                        className="absolute left-4 top-1/2 -translate-y-1/2 p-2 rounded-full shadow-lg transition-all duration-300 hover:scale-110" 
+                        style={{
+                          backgroundColor: 'hsl(var(--palette-blue))'
+                        }}
+                      >
+                        <ChevronLeft className="w-5 h-5 text-white" />
+                      </button>
+                      
+                      <button 
+                        onClick={nextImage} 
+                        className="absolute right-4 top-1/2 -translate-y-1/2 p-2 rounded-full shadow-lg transition-all duration-300 hover:scale-110" 
+                        style={{
+                          backgroundColor: 'hsl(var(--palette-blue))'
+                        }}
+                      >
+                        <ChevronRight className="w-5 h-5 text-white" />
+                      </button>
+                      
+                      {/* Dots indicator */}
+                      <div className="absolute bottom-4 left-1/2 -translate-x-1/2 flex gap-2">
+                        {officeImages.map((_, index) => (
+                          <button 
+                            key={index} 
+                            onClick={() => setCurrentImageIndex(index)} 
+                            className={`rounded-full transition-all duration-300 ${
+                              index === currentImageIndex ? 'w-6 h-2' : 'w-2 h-2'
+                            }`} 
+                            style={{
+                              backgroundColor: index === currentImageIndex 
+                                ? 'hsl(var(--palette-blue))' 
+                                : 'hsl(var(--palette-blue) / 0.3)'
+                            }} 
+                          />
+                        ))}
+                      </div>
+                    </div>
+                    
+                    <div className="p-3 h-12">
+                      <h4 className="text-lg font-bold mb-1 font-montserrat truncate" style={{
+                        color: 'hsl(var(--palette-blue))'
+                      }}>
+                        {currentImage.title}
+                      </h4>
+                      <p className="text-xs truncate" style={{
+                        color: 'hsl(var(--foreground) / 0.8)'
+                      }}>
+                        {currentImage.description}
+                      </p>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              {/* Location Section */}
+              <div className="flex flex-col h-full">
+                <div className="flex items-center justify-center gap-3 mb-6">
+                  <div className="p-3 rounded-full" style={{
+                    backgroundColor: 'hsl(var(--palette-green) / 0.1)'
+                  }}>
+                    <MapPin className="w-8 h-8" style={{
+                      color: 'hsl(var(--palette-green))'
+                    }} />
+                  </div>
+                  <h3 className="text-2xl font-bold font-montserrat" style={{
+                    color: 'hsl(var(--palette-green))'
+                  }}>
+                    Nuestra Ubicación
+                  </h3>
+                </div>
+                
+                <div className="flex-1 rounded-2xl overflow-hidden shadow-xl h-96" style={{
+                  background: 'linear-gradient(145deg, hsl(var(--background)) 0%, hsl(var(--palette-green) / 0.05) 100%)',
+                  border: '1px solid hsl(var(--palette-green) / 0.1)'
                 }}>
-                    {currentImage.description}
-                  </p>
+                  <div className="h-full w-full">
+                    <GoogleMap />
+                  </div>
                 </div>
               </div>
             </div>
-          </div>
+          </>
+        ) : (
+          <>
+            {/* Loading state - mostrar skeletons mientras cargan las imágenes */}
+            <div className="text-center mb-16">
+              <Skeleton className="h-12 w-96 mx-auto mb-6" />
+              <Skeleton className="h-6 w-full max-w-3xl mx-auto mb-2" />
+              <Skeleton className="h-6 w-80 mx-auto" />
+            </div>
 
-          {/* Location Section */}
-          <div className="flex flex-col h-full">
-            <div className="flex items-center justify-center gap-3 mb-6">
-              <div className="p-3 rounded-full" style={{
-              backgroundColor: 'hsl(var(--palette-green) / 0.1)'
-            }}>
-                <MapPin className="w-8 h-8" style={{
-                color: 'hsl(var(--palette-green))'
-              }} />
+            <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 items-stretch max-w-6xl mx-auto">
+              {/* Office Images Skeleton */}
+              <div className="flex flex-col h-full">
+                <div className="flex items-center justify-center gap-3 mb-6">
+                  <Skeleton className="w-14 h-14 rounded-full" />
+                  <Skeleton className="h-8 w-48" />
+                </div>
+                <Skeleton className="flex-1 h-96 rounded-2xl" />
               </div>
-              <h3 className="text-2xl font-bold font-montserrat" style={{
-              color: 'hsl(var(--palette-green))'
-            }}>
-                Nuestra Ubicación
-              </h3>
-            </div>
-            
-            <div className="flex-1 rounded-2xl overflow-hidden shadow-xl h-96" style={{
-            background: 'linear-gradient(145deg, hsl(var(--background)) 0%, hsl(var(--palette-green) / 0.05) 100%)',
-            border: '1px solid hsl(var(--palette-green) / 0.1)'
-          }}>
-              <div className="h-full w-full">
-                <GoogleMap />
+
+              {/* Location Skeleton */}
+              <div className="flex flex-col h-full">
+                <div className="flex items-center justify-center gap-3 mb-6">
+                  <Skeleton className="w-14 h-14 rounded-full" />
+                  <Skeleton className="h-8 w-44" />
+                </div>
+                <Skeleton className="flex-1 h-96 rounded-2xl" />
               </div>
             </div>
-          </div>
-        </div>
+
+            {/* Indicador de progreso más elegante */}
+            <div className="fixed bottom-4 right-4 bg-white rounded-full shadow-lg p-4 z-50">
+              <div className="flex items-center gap-3">
+                <div className="relative w-8 h-8">
+                  <div className="absolute inset-0 rounded-full border-2 border-gray-200"></div>
+                  <div 
+                    className="absolute inset-0 rounded-full border-2 border-t-transparent transition-all duration-300"
+                    style={{ 
+                      borderColor: 'hsl(var(--palette-blue))',
+                      borderTopColor: 'transparent',
+                      transform: `rotate(${(loadingProgress / 100) * 360}deg)`
+                    }}
+                  ></div>
+                </div>
+                <span className="text-sm font-medium" style={{ color: 'hsl(var(--palette-blue))' }}>
+                  Cargando {Math.round(loadingProgress)}%
+                </span>
+              </div>
+            </div>
+          </>
+        )}
       </div>
-    </section>;
+    </section>
+  );
 };
+
 export default TeamSection;
