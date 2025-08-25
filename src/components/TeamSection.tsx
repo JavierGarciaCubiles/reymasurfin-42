@@ -1,9 +1,12 @@
 
 import { MapPin, Users, Building2, ChevronLeft, ChevronRight } from "lucide-react";
-import { useState } from "react";
+import { useState, useMemo } from "react";
 import GoogleMap from "./GoogleMap";
 import { useScrollReveal } from "@/hooks/useScrollReveal";
 import { AnimatedTestimonials } from "@/components/ui/animated-testimonials";
+import { OptimizedImage } from "./OptimizedImage";
+import { useImagePreloader } from "@/hooks/useImagePreloader";
+import { Skeleton } from "@/components/ui/skeleton";
 
 const teamMembers = [{
   name: "Carlos Rodríguez",
@@ -71,12 +74,27 @@ const TeamSection = () => {
     animationClasses
   } = useScrollReveal(0.1, false, 'slideDown');
   const [currentImageIndex, setCurrentImageIndex] = useState(0);
+
+  // Precargar imágenes de manera inteligente
+  const allImageUrls = useMemo(() => {
+    return officeImages.map(img => img.imageUrl);
+  }, []);
+
+  const { imagesLoaded, loadedImages, loadingProgress } = useImagePreloader(allImageUrls, {
+    priority: 'high',
+    lazy: false
+  });
+
   const nextImage = () => {
     setCurrentImageIndex(prev => (prev + 1) % officeImages.length);
   };
+
   const prevImage = () => {
     setCurrentImageIndex(prev => (prev - 1 + officeImages.length) % officeImages.length);
   };
+
+  const currentImage = officeImages[currentImageIndex];
+
   return <section ref={elementRef} className={`bg-transparent py-16 relative overflow-hidden ${isVisible ? animationClasses.visible : animationClasses.hidden}`} id="equipo">
       <div className="container mx-auto px-4 relative">
         <div className="text-center mb-16">
@@ -91,6 +109,19 @@ const TeamSection = () => {
             y cómo llegar fácilmente a nuestras instalaciones.
           </p>
         </div>
+
+        {/* Indicador de carga optimizado */}
+        {!imagesLoaded && (
+          <div className="fixed top-0 left-0 w-full h-1 bg-gray-200 z-50">
+            <div 
+              className="h-full bg-gradient-to-r transition-all duration-300" 
+              style={{ 
+                width: `${loadingProgress}%`,
+                background: 'linear-gradient(90deg, hsl(var(--palette-blue)), hsl(var(--palette-green)))'
+              }} 
+            />
+          </div>
+        )}
 
         {/* Office Images and Location */}
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 items-stretch max-w-6xl mx-auto">
@@ -117,7 +148,17 @@ const TeamSection = () => {
           }}>
               <div className="relative h-full">
                 <div className="relative h-80">
-                  <img src={officeImages[currentImageIndex].imageUrl} alt={officeImages[currentImageIndex].title} className="w-full h-full object-cover" />
+                  {loadedImages.has(currentImage.imageUrl) ? (
+                    <OptimizedImage
+                      src={currentImage.imageUrl}
+                      alt={currentImage.title}
+                      className="w-full h-full object-cover"
+                      priority="high"
+                      lazy={false}
+                    />
+                  ) : (
+                    <Skeleton className="w-full h-full" />
+                  )}
                   
                   {/* Navigation buttons */}
                   <button onClick={prevImage} className="absolute left-4 top-1/2 -translate-y-1/2 p-2 rounded-full shadow-lg transition-all duration-300 hover:scale-110" style={{
@@ -134,9 +175,20 @@ const TeamSection = () => {
                   
                   {/* Dots indicator */}
                   <div className="absolute bottom-4 left-1/2 -translate-x-1/2 flex gap-2">
-                    {officeImages.map((_, index) => <button key={index} onClick={() => setCurrentImageIndex(index)} className={`w-2 h-2 rounded-full transition-all duration-300 ${index === currentImageIndex ? 'w-6' : ''}`} style={{
-                    backgroundColor: index === currentImageIndex ? 'hsl(var(--palette-blue))' : 'hsl(var(--palette-blue) / 0.3)'
-                  }} />)}
+                    {officeImages.map((_, index) => (
+                      <button 
+                        key={index} 
+                        onClick={() => setCurrentImageIndex(index)} 
+                        className={`rounded-full transition-all duration-300 ${
+                          index === currentImageIndex ? 'w-6 h-2' : 'w-2 h-2'
+                        }`} 
+                        style={{
+                          backgroundColor: index === currentImageIndex 
+                            ? 'hsl(var(--palette-blue))' 
+                            : 'hsl(var(--palette-blue) / 0.3)'
+                        }} 
+                      />
+                    ))}
                   </div>
                 </div>
                 
@@ -144,12 +196,12 @@ const TeamSection = () => {
                   <h4 className="text-lg font-bold mb-1 font-montserrat truncate" style={{
                   color: 'hsl(var(--palette-blue))'
                 }}>
-                    {officeImages[currentImageIndex].title}
+                    {currentImage.title}
                   </h4>
                   <p className="text-xs truncate" style={{
                   color: 'hsl(var(--foreground) / 0.8)'
                 }}>
-                    {officeImages[currentImageIndex].description}
+                    {currentImage.description}
                   </p>
                 </div>
               </div>
