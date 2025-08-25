@@ -1,3 +1,4 @@
+
 import { MapPin, Users, Building2, ChevronLeft, ChevronRight } from "lucide-react";
 import { useState } from "react";
 import GoogleMap from "./GoogleMap";
@@ -58,8 +59,8 @@ const officeImages = [{
   description: "Zona central con acceso a todas las áreas de trabajo",
   imageUrl: "/lovable-uploads/09b78f64-07b2-4f32-a42d-13a5620c42dc.png"
 }, {
-  title: "Área de Almacenamiento y Archivos",
-  description: "Espacio organizado para documentación y materiales de oficina",
+  title: "Puertas de Acceso",
+  description: "Entrada y salida principal de nuestras oficinas",
   imageUrl: "/lovable-uploads/ade2002b-9983-4f12-b080-87afb0884c94.png"
 }];
 
