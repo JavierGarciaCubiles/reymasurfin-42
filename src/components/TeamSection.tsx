@@ -49,6 +49,18 @@ const officeImages = [{
   title: "Centro de Impresión y Documentación",
   description: "Área equipada para gestión documental y proyectos técnicos",
   imageUrl: "/lovable-uploads/6a659218-43f6-4445-8129-ec6b3651a980.png"
+}, {
+  title: "Área de Descanso y Comida",
+  description: "Espacio acogedor para el descanso del equipo con vistas panorámicas",
+  imageUrl: "/lovable-uploads/c28e2849-f149-4b7b-a343-eddbc9beffb7.png"
+}, {
+  title: "Área Central de Oficinas",
+  description: "Zona central con acceso a todas las áreas de trabajo",
+  imageUrl: "/lovable-uploads/09b78f64-07b2-4f32-a42d-13a5620c42dc.png"
+}, {
+  title: "Área de Almacenamiento y Archivos",
+  description: "Espacio organizado para documentación y materiales de oficina",
+  imageUrl: "/lovable-uploads/ade2002b-9983-4f12-b080-87afb0884c94.png"
 }];
 
 const TeamSection = () => {
