@@ -43,7 +43,7 @@ const officeImages = [{
 }, {
   title: "Oficina Principal",
   description: "Espacio de trabajo con tecnología moderna y diseño funcional",
-  imageUrl: "/lovable-uploads/54c407a2-aa42-4397-aaf8-1cc1a270ee6a.png"
+  imageUrl: "/lovable-uploads/de0edba0-cb43-4a3e-a744-78e63525bc54.png"
 }, {
   title: "Área de Desarrollo",
   description: "Zona de trabajo colaborativo con equipos especializados",
