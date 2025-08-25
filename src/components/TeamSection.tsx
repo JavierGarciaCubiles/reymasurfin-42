@@ -1,4 +1,3 @@
-
 import { MapPin, Users, Building2, ChevronLeft, ChevronRight } from "lucide-react";
 import { useState } from "react";
 import GoogleMap from "./GoogleMap";
@@ -56,15 +55,6 @@ const TeamSection = () => {
   return <section ref={elementRef} className={`bg-transparent py-16 relative overflow-hidden ${isVisible ? animationClasses.visible : animationClasses.hidden}`} id="equipo">
       <div className="container mx-auto px-4 relative">
         <div className="text-center mb-16">
-          <div className="inline-flex items-center gap-2 px-4 py-2 mb-6 rounded-full border" style={{
-            backgroundColor: 'hsl(var(--palette-blue) / 0.1)',
-            borderColor: 'hsl(var(--palette-blue) / 0.2)',
-            color: 'hsl(var(--palette-blue))'
-          }}>
-            <Building2 className="w-4 h-4" />
-            <span className="text-sm font-semibold font-montserrat">INSTALACIONES Y UBICACIÓN</span>
-          </div>
-          
           <h2 className="text-4xl md:text-5xl font-bold mb-6 font-montserrat" style={{
             color: 'hsl(var(--palette-blue))'
           }}>
@@ -101,7 +91,7 @@ const TeamSection = () => {
             border: '1px solid hsl(var(--palette-blue) / 0.1)'
           }}>
               <div className="relative h-full">
-                <div className="relative h-64">
+                <div className="relative h-80">
                   <img src={officeImages[currentImageIndex].imageUrl} alt={officeImages[currentImageIndex].title} className="w-full h-full object-cover" />
                   
                   {/* Navigation buttons */}
@@ -125,13 +115,13 @@ const TeamSection = () => {
                   </div>
                 </div>
                 
-                <div className="p-4 h-20">
-                  <h4 className="text-lg font-bold mb-2 font-montserrat" style={{
+                <div className="p-3 h-12">
+                  <h4 className="text-lg font-bold mb-1 font-montserrat truncate" style={{
                   color: 'hsl(var(--palette-blue))'
                 }}>
                     {officeImages[currentImageIndex].title}
                   </h4>
-                  <p className="text-sm" style={{
+                  <p className="text-xs truncate" style={{
                   color: 'hsl(var(--foreground) / 0.8)'
                 }}>
                     {officeImages[currentImageIndex].description}
