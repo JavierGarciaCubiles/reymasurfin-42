@@ -1,3 +1,4 @@
+
 import * as React from "react"
 import { useCallback, useEffect, useState } from "react"
 import { useIsomorphicLayoutEffect } from "@/hooks/use-isomorphic-layout-effect"
@@ -117,12 +118,10 @@ const DEFAULT_STATE: State = {
 const ToastContext = React.createContext<{
   ...State
   dispatch: React.Dispatch<ToastAction>
-}>(
-  {
-    ...DEFAULT_STATE,
-    dispatch: () => {},
-  }
-)
+}>({
+  ...DEFAULT_STATE,
+  dispatch: () => {},
+})
 
 type ToastProviderProps = {
   children: React.ReactNode
@@ -218,7 +217,6 @@ export const useToast2 = () => {
   }
 }
 
-//
 let toastState: {
   state: State
   dispatch: React.Dispatch<ToastAction>
