@@ -19,28 +19,28 @@ const LinkedInJobsWidget = () => {
       title: "Especialista en Fontanería",
       location: "Sevilla, España",
       type: "Tiempo completo",
-      description: "Buscamos técnico especializado en reformas integrales con experiencia en siniestros y seguros."
+      description: "Buscamos fontanero especializado en instalaciones sanitarias, reparación de tuberías, sistemas de calefacción y trabajos de fontanería en reformas integrales."
     },
     {
       id: "2", 
       title: "Especialista en Albañilería",
       location: "Sevilla, España",
       type: "Tiempo completo",
-      description: "Profesional con experiencia en tramitación de siniestros y relación con aseguradoras."
+      description: "Profesional en trabajos de albañilería: construcción de tabiques, alicatados, solados, enfoscados y acabados en obra nueva y reformas."
     },
     {
       id: "3",
       title: "Especialista en Carpintería Metálica",
       location: "Sevilla, España",
       type: "Tiempo parcial",
-      description: "Arquitecto técnico para supervisión de obras y peritaciones técnicas."
+      description: "Técnico especializado en fabricación e instalación de estructuras metálicas, ventanas de aluminio, puertas y elementos de carpintería metálica."
     },
     {
       id: "4",
       title: "Especialista en Electricidad",
       location: "Sevilla, España",
       type: "Tiempo parcial",
-      description: "Arquitecto técnico para supervisión de obras y peritaciones técnicas."
+      description: "Electricista para instalaciones eléctricas residenciales e industriales, cuadros eléctricos, iluminación y sistemas de automatización domótica."
     }
   ]);
 
