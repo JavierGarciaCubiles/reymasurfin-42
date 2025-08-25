@@ -1,3 +1,4 @@
+
 import { MapPin, Users, Building2, ChevronLeft, ChevronRight } from "lucide-react";
 import { useState } from "react";
 import GoogleMap from "./GoogleMap";
@@ -55,52 +56,27 @@ const TeamSection = () => {
   return <section ref={elementRef} className={`bg-transparent py-16 relative overflow-hidden ${isVisible ? animationClasses.visible : animationClasses.hidden}`} id="equipo">
       <div className="container mx-auto px-4 relative">
         <div className="text-center mb-16">
-          {/* Badge/Tag superior - ahora enfocado a instalaciones */}
-          <div
-            className="inline-flex items-center gap-2 px-4 py-2 mb-6 rounded-full border"
-            style={{
-              backgroundColor: 'hsl(var(--palette-blue) / 0.08)',
-              borderColor: 'hsl(var(--palette-blue) / 0.2)',
-              color: 'hsl(var(--palette-blue))'
-            }}
-          >
+          <div className="inline-flex items-center gap-2 px-4 py-2 mb-6 rounded-full border" style={{
+            backgroundColor: 'hsl(var(--palette-blue) / 0.1)',
+            borderColor: 'hsl(var(--palette-blue) / 0.2)',
+            color: 'hsl(var(--palette-blue))'
+          }}>
             <Building2 className="w-4 h-4" />
             <span className="text-sm font-semibold font-montserrat">INSTALACIONES Y UBICACIÓN</span>
           </div>
-
-          {/* Título principal rediseñado para esta sección */}
-          <h2 className="text-5xl md:text-6xl lg:text-7xl font-bold mb-8 font-montserrat leading-tight">
-            <span className="block" style={{ color: 'hsl(var(--palette-blue))' }}>
-              Nuestras instalaciones
-            </span>
-            <span className="block text-3xl md:text-4xl lg:text-5xl font-normal mt-2" style={{ color: 'hsl(var(--foreground) / 0.7)' }}>
-              y ubicación
-            </span>
+          
+          <h2 className="text-4xl md:text-5xl font-bold mb-6 font-montserrat" style={{
+            color: 'hsl(var(--palette-blue))'
+          }}>
+            Nuestras Instalaciones y Ubicación
           </h2>
-
-          {/* Subtítulo acorde al carrusel y mapa */}
-          <div className="max-w-5xl mx-auto">
-            <p
-              className="text-xl md:text-2xl mb-4 font-montserrat leading-relaxed"
-              style={{ color: 'hsl(var(--foreground) / 0.8)' }}
-            >
-              Visítanos en el <span className="font-semibold" style={{ color: 'hsl(var(--palette-green))' }}>Edificio Omega</span>. 
-              Descubre nuestras oficinas modernas y cómo llegar fácilmente.
-            </p>
-            <p className="text-lg font-montserrat" style={{ color: 'hsl(var(--foreground) / 0.6)' }}>
-              <strong>Edificio Omega</strong> • <strong>Málaga</strong> • <strong>Atención personalizada</strong>
-            </p>
-          </div>
-
-          {/* Línea decorativa */}
-          <div className="flex items-center justify-center mt-8 mb-4">
-            <div className="h-0.5 w-16 mr-4" style={{ backgroundColor: 'hsl(var(--palette-green))' }}></div>
-            <div className="w-3 h-3 rounded-full" style={{ backgroundColor: 'hsl(var(--palette-green))' }}></div>
-            <div className="h-0.5 w-16 ml-4" style={{ backgroundColor: 'hsl(var(--palette-green))' }}></div>
-          </div>
+          
+          <p className="text-lg md:text-xl text-gray-600 max-w-3xl mx-auto leading-relaxed font-montserrat">
+            Visítanos en el <strong>Edificio Omega</strong> en Málaga. Descubre nuestras oficinas modernas 
+            y cómo llegar fácilmente a nuestras instalaciones.
+          </p>
         </div>
 
-        {/* Team Members */}
         {/* Office Images and Location */}
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 items-stretch max-w-6xl mx-auto">
           {/* Office Images Carousel */}
@@ -149,7 +125,7 @@ const TeamSection = () => {
                   </div>
                 </div>
                 
-                <div className="p-4">
+                <div className="p-4 h-20">
                   <h4 className="text-lg font-bold mb-2 font-montserrat" style={{
                   color: 'hsl(var(--palette-blue))'
                 }}>
